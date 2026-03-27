@@ -1,0 +1,293 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                  GUIDE PRATIQUE - DÉBOGAGE & CONSEILS EXAM                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION A: PIÈGES COURANTS À ÉVITER
+════════════════════════════════════════════════════════════════════════════════
+
+🔴 PIÈGE 1: Oublier le UNDO (undo())
+────────────────────────────────────────────────────────────────────────────────
+MAUVAIS:
+  void solve(state, depth):
+    for choice in choices:
+      if is_valid(choice):
+        apply(choice)        // APPLY
+        solve(state, depth+1) // RECURSE
+        // OUPS! Pas de UNDO!
+
+RÉSULTAT: Après la première solution, l'état est corrompu. Toutes les solutions
+suivantes sont invalides.
+
+CORRECT:
+  void solve(state, depth):
+    for choice in choices:
+      if is_valid(choice):
+        apply(choice)         // APPLY
+        solve(state, depth+1)  // RECURSE
+        undo(choice)          // UNDO ← TOUJOURS!
+
+════════════════════════════════════════════════════════════════════════════════
+
+🔴 PIÈGE 2: Base case APRÈS la boucle
+────────────────────────────────────────────────────────────────────────────────
+MAUVAIS:
+  void solve(depth):
+    for choice in choices:    // ← boucle d'abord
+      if is_valid(choice):
+        apply(choice)
+        solve(depth+1)
+        undo(choice)
+    if depth == target:       // ← base case après!
+      print_solution()
+
+RÉSULTAT: La boucle exécute toujours au moins une itération, même si
+depth==target. Solutions dupliquées ou comportement étrange.
+
+CORRECT:
+  void solve(depth):
+    if depth == target:       // ← BASE CASE FIRST!
+      print_solution()
+      return
+    for choice in choices:    // ← PUIS la boucle
+      if is_valid(choice):
+        apply(choice)
+        solve(depth+1)
+        undo(choice)
+
+════════════════════════════════════════════════════════════════════════════════
+
+🔴 PIÈGE 3: Valider APRÈS recurse (au lieu d'avant)
+────────────────────────────────────────────────────────────────────────────────
+MAUVAIS:
+  void solve(depth):
+    if depth == target:
+      if is_valid_final():      // ← validation APRÈS!
+        print_solution()
+      return
+    ...
+
+RÉSULTAT: Tu explores des branches invalides jusqu'au bout. Pas de pruning.
+Performance terrible pour de grands n.
+
+CORRECT:
+  void solve(depth):
+    if depth == target:
+      print_solution()
+      return
+    for choice in choices:
+      if is_valid(choice):        // ← validation AVANT!
+        apply(choice)
+        solve(depth+1)
+        undo(choice)
+
+════════════════════════════════════════════════════════════════════════════════
+
+🔴 PIÈGE 4: Confondre depth avec la variable de boucle
+────────────────────────────────────────────────────────────────────────────────
+MAUVAIS:
+  void solve(int depth):
+    for (depth = 0; depth < n; depth++)  // ← depth++ en boucle!
+    {
+      solve(depth + 1);
+    }
+
+RÉSULTAT: depth change à chaque itération. Récursion cassée.
+
+CORRECT:
+  void solve(int depth):
+    int choice;
+    for (choice = 0; choice < n; choice++)  // ← variable séparée
+    {
+      solve(depth + 1);  // depth est fixe pour cet appel
+    }
+
+════════════════════════════════════════════════════════════════════════════════
+
+🔴 PIÈGE 5: Buffer overflow / malloc insuffisant
+────────────────────────────────────────────────────────────────────────────────
+MAUVAIS:
+  int *arr = malloc(5);     // allocation petite
+  // puis on fait: arr[100] = ...  ← CRASH ou undefined behavior
+
+CORRECT:
+  int n = 100;
+  int *arr = malloc(sizeof(int) * n);  // allocation suffisante
+
+════════════════════════════════════════════════════════════════════════════════
+
+🔴 PIÈGE 6: Fuites mémoire (oublier free())
+────────────────────────────────────────────────────────────────────────────────
+MAUVAIS:
+  int *arr = malloc(1000);
+  solve(arr, 0, 1000);
+  // retour sans free()
+
+CORRECT:
+  int *arr = malloc(1000);
+  solve(arr, 0, 1000);
+  free(arr);  // ← toujours libérer
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION B: TECHNIQUES DE DÉBOGAGE RAPIDE
+════════════════════════════════════════════════════════════════════════════════
+
+📍 TECHNIQUE 1: Ajouter des prints de trace
+──────────────────────────────────────────────────────────────────────────────
+
+  void solve(int *queens, int row, int n)
+  {
+    printf("[DEBUG] row=%d, n=%d\n", row, n);  // ← trace
+    
+    if (row == n)
+    {
+      printf("[SOLUTION FOUND]\n");  // ← trace avant print
+      // print solution
+      return ;
+    }
+    
+    int col;
+    col = 0;
+    while (col < n)
+    {
+      if (is_valid(queens, row, col, n))
+      {
+        printf("[TRYING] row=%d, col=%d\n", row, col);  // ← trace
+        queens[row] = col;
+        solve(queens, row + 1, n);
+        queens[row] = -1;
+      }
+      col++;
+    }
+  }
+
+Lance avec petits inputs (n=1, n=4) et regarde les traces.
+
+════════════════════════════════════════════════════════════════════════════════
+
+📍 TECHNIQUE 2: Vérifier l'output format
+──────────────────────────────────────────────────────────────────────────────
+
+Ton programme print-il EXACTEMENT ce qui est demandé?
+
+N-Queens:
+  ✓ "1 3 0 2\n"  (espaces entre nombres, newline à la fin)
+  ✗ "1,3,0,2"    (virgules au lieu d'espaces)
+  ✗ "1 3 0 2"    (pas de newline!)
+
+Permutations:
+  ✓ "abc\n"      (newline après chaque permutation)
+  ✗ "abc"        (pas de newline!)
+  ✗ "a b c"      (espaces entre lettres!)
+
+RIP:
+  ✓ "( _ )\n"    (espaces remplacent les parens)
+  ✗ "(  )"       (espaces qui ne remplacent rien)
+
+════════════════════════════════════════════════════════════════════════════════
+
+📍 TECHNIQUE 3: Tester avec des inputs minimaux
+──────────────────────────────────────────────────────────────────────────────
+
+N-Queens:
+  ./n_queens 1  → doit print "0\n"
+  ./n_queens 2  → doit print rien (pas de solution pour n=2)
+  ./n_queens 4  → doit print exactement 2 solutions
+
+Permutations:
+  ./perm a      → "a\n"
+  ./perm ab     → "ab\nba\n"
+
+Powerset:
+  ./powerset 5 2 3      → "2 3\n"
+  ./powerset 0 1 2 -1   → "\n" (ensemble vide)
+
+RIP:
+  ./rip "()"    → "()\n" (déjà balanced)
+  ./rip "(()"   → solutions
+
+════════════════════════════════════════════════════════════════════════════════
+
+📍 TECHNIQUE 4: Vérifier la récursion mentalement
+──────────────────────────────────────────────────────────────────────────────
+
+Trace un petit exemple à la main (ou sur papier):
+
+N-Queens n=1:
+  solve([−1], 0, 1)
+    row=0, n=1, row≠n
+    col=0:
+      is_valid([−1], 0, 0) → aucune reine avant → return 1
+      queens[0] = 0
+      solve([0], 1, 1)
+        row=1, n=1, row==n
+        PRINT "0\n"
+        return
+      queens[0] = -1
+    col=1: loop terminé
+  return
+
+Résultat: "0\n" ✓
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION C: CONSEILS D'EXAM DEMAIN MATIN
+════════════════════════════════════════════════════════════════════════════════
+
+🎯 Pendant l'exam (les 3 premières minutes):
+  ☐ Lis le sujet 2 fois
+  ☐ Identifie: state, depth, target, choices, constraint
+  ☐ Écris le prototype des 3 fonctions: is_valid(), apply(), undo()
+  ☐ PUIS code le template universel
+
+💡 Stratégie de coding:
+  ☐ Copie le template universel d'abord (ça te sauve du temps)
+  ☐ Implémente is_valid() (c'est LE cœur du problème)
+  ☐ Implémente apply() et undo() (ils sont miroirs)
+  ☐ Teste avec n=1 ou n=2
+
+🚨 Si tu es bloqué:
+  ☐ Le problème c'est presque 100% dans is_valid()
+  ☐ Trace une exécution à la main avec petit input
+  ☐ Ajoute des printf() pour voir ce qui se passe
+  ☐ Demande à un examinateur de t'expliquer le sujet (c'est ok!)
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION F: FORMULES À RETENIR
+════════════════════════════════════════════════════════════════════════════════
+
+N-Queens diagonal check:
+  if (queens[i] - col == i - row || queens[i] - col == row - i)
+
+C'est parce que les diagonales se décrivent comme:
+  - Diagonale descendante (↙): col - row = constant
+  - Diagonale montante (↖): col + row = constant
+  
+Donc: queens[i] - col == i - row  (mémorise-le!)
+
+Permutation with used[]:
+  for i = 0 to n-1:
+    if !used[i]:
+      result[depth] = str[i]
+      used[i] = 1
+      recurse()
+      used[i] = 0  ← MIRROR!
+
+Subset sum (2 branches):
+  // Branche 1: prendre arr[index]
+  solve(index+1, sum + arr[index], count+1)
+  
+  // Branche 2: sauter arr[index]
+  solve(index+1, sum, count)
+
+RIP pruning:
+  if (close > open at any point):
+    return  // prune immediately
+
+════════════════════════════════════════════════════════════════════════════════
+
+Tu vas le tuer, ce rank 03. 🚀
+
+"""
+"To understand recursion, you must first understand recursion." — Quelqu'un, quelque part
+"""
+

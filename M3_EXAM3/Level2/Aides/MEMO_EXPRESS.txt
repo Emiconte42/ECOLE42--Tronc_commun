@@ -1,0 +1,237 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    EXAM RANK 03 - MEMO EXPRESS                              ║
+║                      Lundi soir → Exam demain matin                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+════════════════════════════════════════════════════════════════════════════════
+1. N-QUEENS ⚔️
+════════════════════════════════════════════════════════════════════════════════
+
+PROBLÈME:
+  N reines sur échiquier N×N. Pas d'attaque = pas même ligne/colonne/diagonale.
+
+LE TRICK:
+  • queens[row] = col (une reine par ligne, enregistrer sa colonne)
+  • Pas besoin de checker les lignes (on remplit ligne par ligne)
+  • DIAGONALES: queens[i] - col == i - row   OU   queens[i] - col == row - i
+  
+PSEUDO-CODE MINIMAL:
+  int is_valid(queens[], row, col):
+    for i from 0 to row-1:
+      if queens[i] == col:               // même colonne
+        return false
+      if |queens[i] - col| == |i - row|: // même diagonale
+        return false
+    return true
+  
+  void solve(queens[], row, n):
+    if row == n:
+      print queens
+      return
+    for col from 0 to n-1:
+      if is_valid(queens, row, col):
+        queens[row] = col
+        solve(queens, row+1, n)
+        queens[row] = -1
+
+AFFICHAGE:
+  queens = [1, 3, 0, 2]
+  Output: "1 3 0 2\n"
+
+════════════════════════════════════════════════════════════════════════════════
+2. PERMUTATIONS 🔄
+════════════════════════════════════════════════════════════════════════════════
+
+PROBLÈME:
+  Toutes les permutations d'une string, en ordre alphabétique.
+
+LE TRICK:
+  • used[] = array booléen pour tracker quels caractères j'ai déjà utilisés
+  • result[] = construction de la permutation
+  • depth = position actuelle dans result
+  • IMPORTANT: le tri alphabétique vient NATURELLEMENT si tu itères i=0 à n!
+  
+PSEUDO-CODE MINIMAL:
+  void solve(str[], result[], used[], depth, len):
+    if depth == len:
+      print result
+      return
+    for i from 0 to len-1:
+      if !used[i]:
+        result[depth] = str[i]
+        used[i] = 1
+        solve(str, result, used, depth+1, len)
+        used[i] = 0
+
+AFFICHAGE:
+  input: "abc"
+  output:
+    abc
+    acb
+    bac
+    bca
+    cab
+    cba
+
+PIÈGES:
+  ✗ Oublier le used[] → duplicate characters
+  ✗ Oublier le used[i] = 0 (UNDO) → toutes solutions après sont invalides
+
+════════════════════════════════════════════════════════════════════════════════
+3. POWERSET (Subset Sum) 🎯
+════════════════════════════════════════════════════════════════════════════════
+
+PROBLÈME:
+  Tous les sous-ensembles d'un array qui somment à target.
+
+LE TRICK:
+  • À chaque index: soit je PRENDS l'élément, soit je le SAUTE
+  • sum = somme courante du subset
+  • Pruning: si sum > target, inutile de continuer (sum ne baisse jamais)
+  • L'ORDRE D'INPUT COMPTE! [3 2 1 4] vs [1 2 3 4] = ordres différents
+
+PSEUDO-CODE MINIMAL:
+  void solve(arr[], target, subset[], count, sum, index):
+    if sum == target:
+      print subset[0..count-1]
+      return
+    if index == len OR sum > target:
+      return
+    
+    // Option 1: prendre arr[index]
+    subset[count] = arr[index]
+    solve(arr, target, subset, count+1, sum+arr[index], index+1)
+    
+    // Option 2: sauter arr[index]
+    solve(arr, target, subset, count, sum, index+1)
+
+AFFICHAGE:
+  target=5, arr=[2,3]
+  output: "2 3\n"
+  
+  target=0, arr=[1,-1,2,-2]
+  output:
+    (empty line for the empty subset)
+    -1 1 2 -2
+    -1 1
+    2 -2
+
+PIÈGES:
+  ✗ Confondre avec "subset de taille k" → NON, c'est "subset somme k"
+  ✗ Oublier le cas target=0 → l'ensemble vide est une solution!
+  ✗ Mélanger l'ordre d'input → les tests y font attention
+
+════════════════════════════════════════════════════════════════════════════════
+4. RIP (Remove Invalid Parenthesis) 🗑️
+════════════════════════════════════════════════════════════════════════════════
+
+PROBLÈME:
+  String de parenthèses déséquilibrée. Remplacer (PAS supprimer) le minimum
+  de caractères par des espaces pour la balancer. Afficher TOUS les résultats.
+
+LE TRICK:
+  • À chaque position: garder le caractère OU le remplacer par espace
+  • PENDANT la construction, vérifier: à chaque étape, open >= close
+  • Si à un moment close > open, ce branch ne peut jamais être valide → prune!
+  • À la fin, check: open == close
+
+PSEUDO-CODE MINIMAL:
+  bool is_prefix_valid(result[], depth):
+    open = 0, close = 0
+    for i from 0 to depth-1:
+      if result[i] == '(':
+        open++
+      if result[i] == ')':
+        close++
+      if close > open:
+        return false
+    return true
+  
+  void solve(result[], depth, len):
+    if !is_prefix_valid(result, depth):
+      return  // PRUNING
+    
+    if depth == len:
+      if open == close at the end:
+        print result
+      return
+    
+    // Option 1: garder result[depth]
+    solve(result, depth+1, len)
+    
+    // Option 2: remplacer par espace
+    temp = result[depth]
+    result[depth] = ' '
+    solve(result, depth+1, len)
+    result[depth] = temp
+
+AFFICHAGE:
+  input: "( ( )"
+  output:
+    "_ ( )" (remplacer première paren)
+    "( _ )" (remplacer deuxième paren)
+
+PIÈGES:
+  ✗ Supprimer les caractères au lieu de les remplacer par espaces
+  ✗ Oublier le pruning (close > open) → va explorer 2^n branches inutiles
+  ✗ Oublier de vérifier open==close à la fin
+
+════════════════════════════════════════════════════════════════════════════════
+TEMPLATE UNIVERSEL (Rappel du PDF)
+════════════════════════════════════════════════════════════════════════════════
+
+void backtrack(state, depth):
+  // 1. BASE CASE: depth == target?
+  if depth == target:
+    print/record solution
+    return
+  
+  // 2. LOOP sur les choix
+  for each choice in available_choices:
+    // 3. VALIDATE
+    if is_valid(choice, state):
+      // 4. APPLY
+      apply(choice, state)
+      // 5. RECURSE
+      backtrack(state, depth+1)
+      // 6. UNDO
+      undo(choice, state)
+
+════════════════════════════════════════════════════════════════════════════════
+CHECKLIST AVANT DE SOUMETTRE
+════════════════════════════════════════════════════════════════════════════════
+
+☐ is_valid() retourne 0/1 ou false/true?
+☐ apply() et undo() sont-ils miroir l'un de l'autre?
+☐ Base case AVANT la boucle?
+☐ Validate AVANT recurse?
+☐ UNDO APRÈS recurse (dans le même niveau de bloc)?
+☐ Tests avec petits inputs (n=1, n=4 pour queens)?
+☐ Pas de buffer overflow (malloc suffisant)?
+☐ Pas de fuite mémoire (free() pour chaque malloc)?
+☐ Format d'output exact (espaces, newlines)?
+
+════════════════════════════════════════════════════════════════════════════════
+COMPILATION & TEST RAPIDE
+════════════════════════════════════════════════════════════════════════════════
+
+gcc -o solution exam_rank_03_solutions.c
+
+# N-Queens
+./solution n_queens 4
+
+# Permutations
+./solution permutations abc
+
+# Powerset
+./solution powerset 5 2 3
+
+# RIP
+./solution rip "(()"
+
+════════════════════════════════════════════════════════════════════════════════
+
+BON COURAGE! 🚀
+Tu as les patterns. Tu as les codes. Maintenant dors 4-5h et reviens demain.
+Confiance en la récursion, pas de panique, et n'oublie pas les UNDO!
+
