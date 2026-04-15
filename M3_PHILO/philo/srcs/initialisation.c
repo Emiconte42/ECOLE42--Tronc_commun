@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 09:38:14 by emiconte          #+#    #+#             */
-/*   Updated: 2026/04/14 13:03:31 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/04/15 14:42:23 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static int	ft_init_philos(t_table *table)
 		table->philos[i].table = table;
 		i++;
 	}
-	table->simulation_finished = 0;
 	return (SUCCESS);
 }
 

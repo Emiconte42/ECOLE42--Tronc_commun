@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 13:28:07 by emiconte          #+#    #+#             */
-/*   Updated: 2026/04/14 12:49:09 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/04/15 14:53:14 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,11 @@ typedef struct s_table
 	pthread_mutex_t		last_meal_mutex;
 	pthread_t			monitor;
 	int					is_dead;
-	int					simulation_finished;
 	long				start_time;
 	t_philo				*philos;
 	int					full;
 	pthread_mutex_t		full_mutex;
 }						t_table;
-
-/*---utils---*/
-long				ft_atol(const char *nptr);
-long				ft_isdigit(int c);
-size_t				ft_strlen(const char *str);
 
 /*---parsing---*/
 int					ft_parsing(t_table *table, int argc, char **argv);
@@ -71,14 +65,26 @@ int					ft_check_overflow(long value);
 /*---initialisation---*/
 int					ft_init(t_table *table);
 
-/*---error---*/
-void				ft_cleanup(t_table *table);
-void				ft_cleanup_init(t_table *table);
-
 /* ---start--- */
 int					ft_start(t_table *table);
+
+/*---threads---*/
+int					create_threads(t_table *table);
+void				join_threads(t_table *table);
+
+/*---routine---*/
+void				*ft_routine(void *arg);
+
+/* ---monitor--- */
 void				*ft_monitor(void *arg);
-/* ---state--- */
+
+/*--forks---*/
+int					ft_take_forks(t_philo *philo);
+int					ft_unlock_one_fork(pthread_mutex_t *fork);
+int					ft_unlock_both_forks(t_philo *philo);
+
+/* ---is_dead--- */
+int					ft_is_dead_only(t_table *table);
 int					ft_get_is_dead(t_table *table);
 void				ft_set_is_dead(t_table *table);
 
@@ -86,30 +92,25 @@ void				ft_set_is_dead(t_table *table);
 long				get_current_time(void);
 void				ft_wait(t_philo *philo);
 
-/*---printf---*/
-void				ft_printf(t_table *table, t_philo *philo, char *message);
-
-/*---routine---*/
-void				*ft_routine(void *arg);
+/*---meals---*/
+int					ft_check_satiated(t_philo *philo);
+long				ft_get_meal_count(t_philo *philo);
+void				ft_set_last_meal(t_philo *philo);
+long				ft_get_last_meal(t_philo *philo);
 
 /*---1philo---*/
 int					handle_one_philo(t_table *table);
 
-/*---threads---*/
-int					create_threads(t_table *table);
-void				join_threads(t_table *table);
+/*---utils---*/
+long				ft_atol(const char *nptr);
+long				ft_isdigit(int c);
+size_t				ft_strlen(const char *str);
 
-/*--forks---*/
-int					ft_take_forks(t_philo *philo);
-int					ft_unlock_one_fork(pthread_mutex_t *fork);
-int					ft_unlock_both_forks(t_philo *philo);
+/*---printf---*/
+void				ft_printf(t_table *table, t_philo *philo, char *message);
 
-/*---meals---*/
-int					ft_check_satiated(t_philo *philo);
-long				ft_get_last_meal(t_philo *philo);
-void				ft_set_last_meal(t_philo *philo);
-long				ft_get_meal_count(t_philo *philo);
-
-int					ft_is_dead_only(t_table *table);
+/*---clean---*/
+void				ft_cleanup(t_table *table);
+void				ft_cleanup_init(t_table *table);
 
 #endif

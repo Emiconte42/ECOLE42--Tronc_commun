@@ -1,9 +1,7 @@
 
 *This project was completed as part of the 42 curriculum by emiconte.*
 
-
 # PHILOSOPHERS
-
 
 ## Description
 
@@ -31,7 +29,6 @@ The real challenge is:
 - using mutexes = locks that protect shared data
 - 1 thread = 1 philosopher
 
-
 ## Instructions
 
 ### Compilation
@@ -55,7 +52,6 @@ Parameters:
 - time_to_eat: time to eat
 - time_to_sleep: time to sleep
 - number_of_times_each_philosopher_must_eat: optional
-
 
 ### Project Details
 
@@ -94,7 +90,6 @@ Required format:
 - timestamp X is thinking
 - timestamp X died
 
-
 ## Resources:
 
 - man pthread_create
@@ -102,7 +97,6 @@ Required format:
 - man gettimeofday
 - https://medium.com/@denaelgammal/dining-philosophers-problem-42-project-guide-mandatory-part-a20fb8dc530e
 - https://en.wikipedia.org/wiki/Dining_philosophers_problem
-
 
 ## Use of AI
 
