@@ -38,11 +38,11 @@ make re
 
 ## Contrôles
 
-- W, A, S, D ou flèches directionnelles → Déplacement
-- + / - → Zoom avant / arrière
-- Molette de la souris → Zoom centré sur le curseur
-- SPACE → Recentrer la vue
-- ESC → Quitter le programme
+- W, A, S, D ou flèches directionnelles =  Déplacement
+- + / - =  Zoom avant / arrière
+- Molette de la souris =  Zoom centré sur le curseur
+- SPACE =  Recentrer la vue
+- ESC =  Quitter le programme
 
 ---
 
@@ -152,11 +152,11 @@ make re
 
 ## Controls
 
-- W, A, S, D or arrow keys → Move
-- + / - → Zoom in / out
-- Mouse wheel → Zoom centered on cursor
-- SPACE → Recenter view
-- ESC → Exit program
+- W, A, S, D or arrow keys =  Move
+- + / - =  Zoom in / out
+- Mouse wheel =  Zoom centered on cursor
+- SPACE =  Recenter view
+- ESC =  Exit program
 
 ---
 
