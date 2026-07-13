@@ -1,0 +1,13 @@
+NO ./asset/no_tex.xpm
+SO ./asset/so_tex.xpm
+WE ./asset/we_tex.xpm
+EA ./asset/ea_tex.xpm
+
+F 100,200,50
+C 10,10,10
+
+1111111
+1000001
+100E001
+1000001
+1111111

@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 14:54:24 by emiconte          #+#    #+#             */
-/*   Updated: 2026/03/03 18:52:45 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/06 13:07:39 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,10 @@ int	graphics_run(t_fdf *fdf)
 		return (0);
 	compute_origin(fdf);
 	draw_map(fdf);
-	mlx_put_image_to_window(
-		fdf->window.mlx,
-		fdf->window.window,
-		fdf->img.img_ptr,
-		0,
-		0);
-	mlx_key_hook(fdf->window.window, key_hook, fdf);
-	mlx_mouse_hook(fdf->window.window, mouse_hook, fdf);
-	mlx_hook(fdf->window.window, 17, 0, clean_and_exit, fdf);
+	mlx_put_image_to_window(fdf->window.mlx, fdf->window.window, fdf->img.img_ptr, 0, 0);
+	mlx_key_hook(fdf->window.window, (void*)key_hook, fdf);
+	mlx_mouse_hook(fdf->window.window, (void*)mouse_hook, fdf);
+	mlx_hook(fdf->window.window, 17, 0, (void*)clean_and_exit, fdf);
 	mlx_loop(fdf->window.mlx);
 	return (1);
 }

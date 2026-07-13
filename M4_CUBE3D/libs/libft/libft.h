@@ -6,7 +6,7 @@
 /*   By: wissalhumeau <wissalhumeau@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 10:35:26 by emiconte          #+#    #+#             */
-/*   Updated: 2026/05/31 19:30:02 by wissalhumea      ###   ########.fr       */
+/*   Updated: 2026/06/30 12:22:09 by hbelleuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ typedef struct s_list
 }					t_list;
 
 t_list		*ft_lstnew(void *content);
-void		ft_lstadd_front(t_list **lst, t_list *new);
+void		ft_lstadd_front(t_list **lst, t_list *new_node);
 int			ft_lstsize(t_list *lst);
 t_list		*ft_lstlast(t_list *lst);
-void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstadd_back(t_list **lst, t_list *new_node);
 void		ft_lstdelone(t_list *lst, void (*del)(void*));
 void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
@@ -93,7 +93,6 @@ char		*ft_gc_strdup(const char *str, t_list **gc);
 char		*ft_gc_strjoin(const char *s1, const char *s2, t_list **gc);
 char		*ft_gc_substr(char const *s, unsigned int start, size_t len,
 				t_list **gc);
-char		*ft_gc_strdup(const char *s, t_list **gc);
 char		*ft_gc_strjoin(char const *s1, char const *s2, t_list **gc);
 char		*ft_gc_itoa(int n, t_list **gc);
 char		**ft_gc_split(char const *s, char sep, t_list **gc);

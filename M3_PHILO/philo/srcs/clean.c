@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 11:56:27 by emiconte          #+#    #+#             */
-/*   Updated: 2026/04/14 19:13:03 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/06/23 18:41:29 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ft_cleanup_init(t_table *table)
 	i = 0;
 	while (i < table->number_of_philosophers)
 	{
-		if (&table->forks[i])
+		// if (&table->forks[i])
 			pthread_mutex_destroy(&table->forks[i]);
-		i++;
+		// i++;
 	}
 	pthread_mutex_destroy(&table->print_mutex);
 	pthread_mutex_destroy(&table->death_mutex);

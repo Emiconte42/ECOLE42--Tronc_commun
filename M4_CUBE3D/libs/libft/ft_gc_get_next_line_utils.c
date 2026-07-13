@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 11:28:30 by emiconte          #+#    #+#             */
-/*   Updated: 2026/05/12 10:46:04 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/06/26 12:07:36 by hbelleuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*ft_gc_strjoin(char const *s1, char const *s2, t_list **gc)
 	return (totalstr);
 }
 
+/*
 char	*ft_gc_strdup(const char *s, t_list **gc)
 {
 	char		*dup;
@@ -59,3 +60,4 @@ char	*ft_gc_strdup(const char *s, t_list **gc)
 	dup[i] = '\0';
 	return (dup);
 }
+*/
