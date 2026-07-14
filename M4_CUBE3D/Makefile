@@ -60,7 +60,7 @@ all: $(NAME)
 	@printf "✔ Compilation OK\n"
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS) 
-	@$(CC) $(CFLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm $(LIBFT) -o $(NAME)
 
 $(MLX):
 	make -C $(MLX_DIR)

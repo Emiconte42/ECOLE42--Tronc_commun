@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 18:10:52 by hbelleuv          #+#    #+#             */
-/*   Updated: 2026/07/07 12:12:44 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/14 12:12:43 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,25 @@ int	ft_check_surrounding(t_game *game, int i, int j)
 
 	if (i == 0 || j == 0 || i == game->map.height - 1
 		|| game->map.grid[i][j + 1] == '\0')
+	{
+		printf("Error : map is not closed\n");
 		return (0);
+	}
 	len_prev = ft_strlen(game->map.grid[i - 1]);
 	len_next = ft_strlen(game->map.grid[i + 1]);
 	if (j >= len_prev || j >= len_next)
+	{
+		printf("Error : map is not closed\n");
 		return (0);
+	}
 	if (game->map.grid[i][j - 1] == ' '
 		|| game->map.grid[i][j + 1] == ' '
 		|| game->map.grid[i - 1][j] == ' '
 		|| game->map.grid[i + 1][j] == ' ')
+	{
+		printf("Error : map is not closed\n");
 		return (0);
+	}
 	return (1);
 }
 

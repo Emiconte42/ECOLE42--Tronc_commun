@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 11:22:41 by hbelleuv          #+#    #+#             */
-/*   Updated: 2026/07/08 11:40:30 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/14 12:11:17 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,10 @@ int	ft_parse_cub_file(char *filename, t_game *game)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (perror("open"), 0);
-	if (ft_process_file_lines(game, fd) == 0
-		|| ft_check_missing_elements(game) == 0)
-	{
-		if (ft_process_file_lines(game, fd) == 0)
-			close(fd);
-		return (0);
-	}
+	if (ft_process_file_lines(game, fd) == 0)
+		return (close(fd), 0);
+	if (ft_check_missing_elements(game) == 0)
+		return (close(fd), 0);
 	close(fd);
 	game->doors_count = ft_count_doors(game);
 	if (game->doors_count > 0)
