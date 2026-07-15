@@ -5,7 +5,7 @@
 NAME		= cub3d
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g3 -Iincludes
+CFLAGS		= -Wall -Wextra -Werror -Iincludes
 
 # LDFLAGS		= -lreadline
 
