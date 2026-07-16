@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 11:49:42 by emiconte          #+#    #+#             */
-/*   Updated: 2026/07/08 12:27:42 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/16 10:31:58 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ void	ft_render_door(t_game *game, t_ray ray, int x, t_img *tex)
 	if (game->map.grid[bg.map_y][bg.map_x] == 'D')
 		ft_render_door(game, bg, x, bg_tex);
 	else
+	{
+		ft_draw_floor_ceiling(game, &bg, x);
 		ft_draw_tex_stripe(game, &bg, x, bg_tex);
+	}
 	ft_draw_door_stripe(game, &ray, x, tex);
 }

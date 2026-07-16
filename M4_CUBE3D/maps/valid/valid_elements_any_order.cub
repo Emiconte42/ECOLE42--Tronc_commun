@@ -1,6 +1,6 @@
-F 220,100,0
+F 0,0,0
 EA ./asset/ea_tex.xpm
-C 225,30,0
+C 0,0,0
 NO ./asset/no_tex.xpm
 WE ./asset/we_tex.xpm
 SO ./asset/so_tex.xpm

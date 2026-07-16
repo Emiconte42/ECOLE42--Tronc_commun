@@ -306,6 +306,7 @@ void			ft_draw_tex_stripe(t_game *game, t_ray *ray, int x, t_img *tex);
 void			ft_load_all_tex(t_game *game);
 
 /* 5_render */
+void			ft_draw_floor_ceiling(t_game *game, t_ray *ray, int x);
 void			ft_cast_rays(t_game *game);
 
 /* ==== FUNCTIONS 4_GAME ================================== */

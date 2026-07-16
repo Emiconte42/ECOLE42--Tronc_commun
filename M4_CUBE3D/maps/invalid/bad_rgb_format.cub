@@ -4,7 +4,7 @@ WE ./asset/we_tex.xpm
 EA ./asset/ea_tex.xpm
 
 F 220,100
-C 225,30,0
+C 0,0,0
 
 111111
 100001

@@ -9,7 +9,7 @@ NO ./asset/no_tex.xpm
 
 
 
-F 220,100,0
+F 0,0,0
 
 
 
@@ -35,7 +35,7 @@ WE ./asset/we_tex.xpm
 
 
 
-C 225,30,0
+C 0,0,0
 
 EA ./asset/ea_tex.xpm
 

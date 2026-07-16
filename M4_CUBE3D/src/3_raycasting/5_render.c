@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 15:22:33 by emiconte          #+#    #+#             */
-/*   Updated: 2026/07/08 11:30:24 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/16 10:32:28 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,24 @@ static void	ft_cast_rays_utils(t_game *game, t_ray *ray, int x)
 		ray->delta_dist_y = fabs(1.0 / ray->dir_y);
 }
 
+void	ft_draw_floor_ceiling(t_game *game, t_ray *ray, int x)
+{
+	int	y;
+
+	y = 0;
+	while (y < ray->draw_start)
+	{
+		put_pixel(game, x, y, game->ceiling.hex_color);
+		y++;
+	}
+	y = ray->draw_end;
+	while (y < WINDOW_HEIGHT)
+	{
+		put_pixel(game, x, y, game->floor.hex_color);
+		y++;
+	}
+}
+
 void	ft_cast_rays(t_game *game)
 {
 	int		x;
@@ -48,7 +66,10 @@ void	ft_cast_rays(t_game *game)
 		if (game->map.grid[ray.map_y][ray.map_x] == 'D')
 			ft_render_door(game, ray, x, tex);
 		else
+		{
+			ft_draw_floor_ceiling(game, &ray, x);
 			ft_draw_tex_stripe(game, &ray, x, tex);
+		}
 		x++;
 	}
 }
