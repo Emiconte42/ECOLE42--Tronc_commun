@@ -3,9 +3,8 @@ SO ./asset/so_tex.xpm
 WE ./asset/we_tex.xpm
 EA ./asset/ea_tex.xpm
 
-F 0,0,0
 C 0,0,0
-F 10,20,30
+F 0,0,0
 
 111111
 100001

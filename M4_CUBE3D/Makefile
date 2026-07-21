@@ -2,12 +2,10 @@
 #                                   CONFIG                                     #
 # **************************************************************************** #
 
-NAME		= cub3d
+NAME		= cub3D
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -Iincludes
-
-# LDFLAGS		= -lreadline
 
 # **************************************************************************** #
 #                                   SOURCES                                    #
@@ -25,7 +23,7 @@ RENDER_DIR = src/5_render/
 
 MAIN_FILES = main.c
 WINDOW_FILES = 1_init_window.c 2_hooks.c 3_mouse.c 4_run.c 5_close.c
-PARSING_FILES = 1_extract_data.c 2_parse_params.c 3_parse_utils.c 4_map_validate.c 5_map_validate_utils.c 6_map_validate_doors.c
+PARSING_FILES = 1_extract_data.c 2_parse_params.c 3_1_parse_utils.c 3_2_parse_utils.c 4_map_validate.c 5_map_validate_utils.c 6_map_validate_doors.c
 RAYCASTING_FILES = 1_init.c 2_dda.c 3_texture.c 4_texture_load.c 5_render.c
 GAME_FILES = 1_movements.c 2_doors.c
 RENDER_FILES = 1_render.c 2_render_utils.c 3_minimap.c 4_minimap_utils.c 5_doors.c

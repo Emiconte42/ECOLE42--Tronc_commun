@@ -6,11 +6,12 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 18:10:52 by hbelleuv          #+#    #+#             */
-/*   Updated: 2026/07/08 12:22:46 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:19:50 by hbelleuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include <stdio.h>
 
 static void	ft_fix_line_spaces(char *line)
 {

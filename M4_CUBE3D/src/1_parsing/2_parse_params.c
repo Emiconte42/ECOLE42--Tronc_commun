@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 12:03:09 by emiconte          #+#    #+#             */
-/*   Updated: 2026/07/07 12:03:14 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:40:50 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_check_texture(t_game *game, char *str, char **path)
 {
 	if (*path != NULL)
 	{
-		printf("Error : texture defined twice\n");
+		printf("Error\nTexture defined twice\n");
 		return (0);
 	}
 	return (ft_parse_texture(game, path, str + 3));
@@ -41,7 +41,7 @@ static int	ft_parse_color_line(t_game *game, char *str)
 	{
 		if (game->defined_floor)
 		{
-			printf("Error : floor color defined twice\n");
+			printf("Error\nFloor color defined twice\n");
 			return (0);
 		}
 		game->defined_floor = 1;
@@ -51,7 +51,7 @@ static int	ft_parse_color_line(t_game *game, char *str)
 	{
 		if (game->defined_ceiling)
 		{
-			printf("Error : ceiling color defined twice\n");
+			printf("Error\nCeiling color defined twice\n");
 			return (0);
 		}
 		game->defined_ceiling = 1;
@@ -76,7 +76,7 @@ int	ft_parse_param(t_game *game, char *line)
 	ret = ft_parse_color_line(game, line);
 	if (ret != -1)
 		return (ret);
-	printf("Error : unknown identifier\n");
+	printf("Error\nUnknown identifier\n");
 	return (0);
 }
 
@@ -85,14 +85,18 @@ int	ft_check_missing_elements(t_game *game)
 	if (!game->tex.no_path || !game->tex.so_path
 		|| !game->tex.we_path || !game->tex.ea_path)
 	{
-		printf("Error : missing texture path\n");
+		printf("Error\nMissing texture path\n");
 		return (0);
 	}
 	else if (!game->defined_floor || !game->defined_ceiling)
 	{
-		printf("Error : missing color\n");
+		printf("Error\nMissing color\n");
 		return (0);
 	}
+	if (ft_check_duplicate_textures(game) == 0)
+		return (0);
+	if (ft_check_duplicate_colors(game) == 0)
+		return (0);
 	if (ft_validate_map(game) == 0)
 		return (0);
 	else if (ft_check_walls(game) == 0)

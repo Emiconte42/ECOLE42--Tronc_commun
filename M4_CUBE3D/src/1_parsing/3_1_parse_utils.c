@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3_parse_utils.c                                    :+:      :+:    :+:   */
+/*   3_1_parse_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 20:27:38 by hbelleuv          #+#    #+#             */
-/*   Updated: 2026/07/07 12:03:35 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:22:27 by hbelleuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_check_map_not_last(char *line)
 		|| ft_strncmp(&line[i], "F ", 2) == 0
 		|| ft_strncmp(&line[i], "C ", 2) == 0)
 	{
-		printf("Error : map not last\n");
+		printf("Error\nMap not last\n");
 		return (0);
 	}
 	return (1);
@@ -45,10 +45,12 @@ int	ft_parse_texture(t_game *game, char **target_path, char *line)
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
 	*target_path = ft_gc_strdup(&line[i], &game->gc);
+	if (ft_check_xpm_extension(*target_path) == 0)
+		return (0);
 	fd = open(*target_path, O_RDONLY);
 	if (fd < 0)
 	{
-		printf("Error : invalid texture path\n");
+		printf("Error\nInvalid texture path\n");
 		return (0);
 	}
 	close(fd);
@@ -59,13 +61,13 @@ static int	ft_parse_single_rgb(char *line, int *i, int *value, int *commas)
 {
 	if (!ft_isdigit(line[*i]))
 	{
-		printf("Error : invalid character\n");
+		printf("Error\nInvalid character\n");
 		return (0);
 	}
 	*value = ft_atoi(&line[*i]);
 	if (*value < 0 || *value > 255)
 	{
-		printf("Error : RGB value out of range\n");
+		printf("Error\nRGB value out of range\n");
 		return (0);
 	}
 	while (ft_isdigit(line[*i]))
@@ -105,7 +107,7 @@ int	ft_parse_color(t_game *game, t_rgb *color, char *line)
 		rgb_index++;
 	}
 	if (commas != 2 || rgb_index != 3 || (line[i] != '\n' && line[i] != '\0'))
-		return (printf("Error : invalid RGB format (expected : 'R,G,B')\n"), 0);
+		return (printf("Error\nInvalid RGB format (expected : 'R,G,B')\n"), 0);
 	color->hex_color = (color->r << 16) | (color->g << 8) | color->b;
 	return (1);
 }

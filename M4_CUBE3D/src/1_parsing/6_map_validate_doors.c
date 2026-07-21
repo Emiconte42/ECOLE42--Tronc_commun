@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   5_map_validate_doors.c                             :+:      :+:    :+:   */
+/*   6_map_validate_doors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 15:50:12 by emiconte          #+#    #+#             */
-/*   Updated: 2026/07/07 12:05:04 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:00:28 by hbelleuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static int	ft_check_door_border(t_game *game, int i, int j)
 	if (i == 0 || j == 0 || game->map.grid[i][j + 1] == '\0'
 		|| i == game->map.height - 1)
 	{
-		printf("Error : a door is on the map border\n");
+		printf("Error\nA door is on the map border\n");
 		return (0);
 	}
 	len_prev = ft_strlen(game->map.grid[i - 1]);
 	len_next = ft_strlen(game->map.grid[i + 1]);
 	if (j >= len_prev || j >= len_next)
 	{
-		printf("Error : a door is on the map border\n");
+		printf("Error\nA door is on the map border\n");
 		return (0);
 	}
 	return (1);
@@ -60,7 +60,7 @@ t_doors	ft_check_door_walls(t_game *game, int i, int j)
 		&& ft_is_walkable(up)
 		&& ft_is_walkable(down))
 		return (DOOR_VERTICAL);
-	printf("Error : invalid door placement\n");
+	printf("Error\nInvalid door placement\n");
 	return (DOOR_INVALID);
 }
 

@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 11:22:41 by hbelleuv          #+#    #+#             */
-/*   Updated: 2026/07/14 12:11:17 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:55:47 by hbelleuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	**ft_alloc_copy_grid(t_game *game)
 	new_grid = ft_gc_calloc(game->map.height + 2, sizeof(char *), &game->gc);
 	if (!new_grid)
 	{
-		printf("Error : incorrect map allocation\n");
+		printf("Error\nIncorrect map allocation\n");
 		ft_close_window(game);
 		exit(1);
 	}

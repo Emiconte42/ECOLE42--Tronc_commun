@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 11:49:42 by emiconte          #+#    #+#             */
-/*   Updated: 2026/07/16 10:31:58 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/07/17 13:25:05 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_is_door_transparent(unsigned int color)
 	return (r >= 45 && r <= 65 && g >= 45 && g <= 65 && b >= 45 && b <= 65);
 }
 
-static void	ft_dda_bg(t_game *game, t_ray *ray)
+static void	ft_dda_doors(t_game *game, t_ray *ray)
 {
 	ray->hit = 0;
 	while (ray->hit == 0)
@@ -88,21 +88,21 @@ static void	ft_draw_door_stripe(t_game *game, t_ray *ray, int x, t_img *tex)
 
 void	ft_render_door(t_game *game, t_ray ray, int x, t_img *tex)
 {
-	t_ray	bg;
-	t_img	*bg_tex;
+	t_ray	doors;
+	t_img	*doors_tex;
 
-	bg = ray;
-	ft_dda_bg(game, &bg);
-	ft_calculate_wall_dist(&bg);
-	ft_calculate_wall_height(&bg);
-	bg_tex = ft_get_tex(game, &bg);
-	ft_calculate_tex_x(game, &bg, bg_tex);
-	if (game->map.grid[bg.map_y][bg.map_x] == 'D')
-		ft_render_door(game, bg, x, bg_tex);
+	doors = ray;
+	ft_dda_doors(game, &doors);
+	ft_calculate_wall_dist(&doors);
+	ft_calculate_wall_height(&doors);
+	doors_tex = ft_get_tex(game, &doors);
+	ft_calculate_tex_x(game, &doors, doors_tex);
+	if (game->map.grid[doors.map_y][doors.map_x] == 'D')
+		ft_render_door(game, doors, x, doors_tex);
 	else
 	{
-		ft_draw_floor_ceiling(game, &bg, x);
-		ft_draw_tex_stripe(game, &bg, x, bg_tex);
+		ft_draw_floor_ceiling(game, &doors, x);
+		ft_draw_tex_stripe(game, &doors, x, doors_tex);
 	}
 	ft_draw_door_stripe(game, &ray, x, tex);
 }

@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 12:03:57 by emiconte          #+#    #+#             */
-/*   Updated: 2026/06/30 19:30:58 by hbelleuv         ###   ########.fr       */
+/*   Updated: 2026/07/17 15:20:36 by hbelleuv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ typedef struct s_door
 	t_doors			orientation;
 }					t_door;
 
-/* ---- Textures (1_parsing) ------------------------------------ */
+/* ---- Textures ------------------------------------ */
 typedef struct s_tex
 {
 	char			*no_path;
@@ -206,14 +206,14 @@ typedef struct s_map
 	int				height;
 }					t_map;
 
-/* ---- Garbage collector (0_gc) -------------------------------------- */
+/* ---- Garbage collector -------------------------------------- */
 typedef struct s_gc
 {
 	void			*content;
 	struct s_gc		*next;
 }					t_gc;
 
-/* ---- Game (aggregate) ----------------------------------------------- */
+/* ---- Game ----------------------------------------------- */
 typedef struct s_game
 {
 	t_list			*gc;
@@ -244,11 +244,16 @@ int				ft_parse_cub_file(char *filename, t_game *game);
 int				ft_check_missing_elements(t_game *game);
 int				ft_parse_param(t_game *game, char *line);
 
-/* 3_parse_utils */
+/* 3_1_parse_utils */
 int				ft_check_extension(char *filename);
 int				ft_parse_color(t_game *game, t_rgb *color, char *line);
 int				ft_parse_texture(t_game *game, char **target_path, char *line);
 int				ft_check_map_not_last(char *line);
+int				ft_check_xpm_extension(char *path);
+
+/* 3_2_parse_utils */
+int				ft_check_duplicate_textures(t_game *game);
+int				ft_check_duplicate_colors(t_game *game);
 
 /* 4_map_validate */
 int				ft_check_walls(t_game *game);

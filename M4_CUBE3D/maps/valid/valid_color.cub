@@ -2,12 +2,12 @@ NO ./asset/no_tex.xpm
 SO ./asset/so_tex.xpm
 WE ./asset/we_tex.xpm
 EA ./asset/ea_tex.xpm
-F 0,150,180
-C 10,20,60
+F 5,0,5
+C 0,150,180
 
 
-111111
-100101
-101001
-1100N1
-111111
+111111111
+100100001
+1010011D1
+1100N0001
+111111111
