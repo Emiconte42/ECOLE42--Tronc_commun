@@ -6,7 +6,7 @@
 /*   By: emiconte <emiconte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 12:03:09 by emiconte          #+#    #+#             */
-/*   Updated: 2026/07/17 15:42:27 by emiconte         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:15:58 by emiconte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@ static int	ft_paths_equal(char *a, char *b)
 {
 	int	len_a;
 	int	len_b;
-	int	cmp;
 
 	len_a = ft_strlen(a);
 	len_b = ft_strlen(b);
 	if (len_a != len_b)
 		return (0);
-	cmp = ft_strncmp(a, b, len_a + 1);
-	if (cmp == 0)
-		return (0);
-	return (1);
+	if (ft_strncmp(a, b, len_a + 1) == 0)
+		return (1);
+	return (0);
 }
 
 int	ft_check_duplicate_textures(t_game *game)
