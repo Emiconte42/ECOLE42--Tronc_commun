@@ -4,7 +4,7 @@
 
 NAME		= phonebook
 
-CC			= c++
+CC			= c++ 
 
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
@@ -14,7 +14,7 @@ CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = objs/
 
-SRCS = 	main.cpp
+SRCS = 	megaphone.cpp
 
 # **************************************************************************** #
 #                                   COMPIL                                    #
