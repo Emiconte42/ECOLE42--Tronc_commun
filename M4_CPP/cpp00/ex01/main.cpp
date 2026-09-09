@@ -25,6 +25,9 @@ int main()
 	std::cout << c2.getNickName() << std::endl;
 	std::cout << c2.getPhoneNumber() << std::endl;
 	std::cout << c2.getDarkestSecret() << std::endl;
+
+	Contact contacts[8];
+	
 	// c.setLastName("DUPONT");
 	// std::cout << c.getLastName() << std::endl;
 	return 0;

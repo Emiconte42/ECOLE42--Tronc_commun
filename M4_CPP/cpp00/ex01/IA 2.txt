@@ -1,0 +1,164 @@
+Récapitulatif des notions vues
+1. Créer et utiliser un objet Contact
+
+    Tu as appris à créer un objet :
+
+    cpp
+    Contact c;
+
+    À appeler une méthode pour définir un champ :
+
+    cpp
+    c.setFirstName("Alice");
+
+    À afficher un champ :
+
+    cpp
+    std::cout << c.getFirstName() << std::endl;
+
+📝 À noter
+Contact c; crée un objet. c.set... et c.get... permettent de modifier et lire ses champs.
+2. Appeler plusieurs méthodes sur le même objet
+
+    Sur un même objet, tu peux appeler plusieurs set... :
+
+    cpp
+    c.setFirstName("Alice");
+    c.setLastName("Dupont");
+
+    Et plusieurs get... pour afficher :
+
+    cpp
+    std::cout << c.getFirstName() << std::endl;
+    std::cout << c.getLastName() << std::endl;
+
+📝 À noter
+Un objet peut avoir plusieurs champs remplis et affichés, un par un.
+3. Créer plusieurs objets de type Contact
+
+    Tu peux créer plusieurs objets indépendants :
+
+    cpp
+    Contact c1;
+    Contact c2;
+
+    Chaque objet a son propre état :
+
+    cpp
+    c1.setFirstName("Alice");
+    c2.setFirstName("Bob");
+
+📝 À noter
+c1 et c2 sont deux Contact distincts : ce que tu mets dans l’un n’affecte pas l’autre.
+4. Remplir tous les champs d’un contact
+
+    Tu as utilisé les 5 paires setter/getter :
+
+        setFirstName / getFirstName
+
+        setLastName / getLastName
+
+        setNickName / getNickName
+
+        setPhoneNumber / getPhoneNumber
+
+        setDarkestSecret / getDarkestSecret
+
+Exemple sur c1 :
+
+cpp
+c1.setFirstName("Alice");
+c1.setLastName("Dupont");
+c1.setNickName("Ali");
+c1.setPhoneNumber("0503020100");
+c1.setDarkestSecret("test");
+
+📝 À noter
+Un Contact a 5 champs ; tu sais maintenant les remplir tous via les setters.
+5. Afficher chaque champ sur une ligne séparée
+
+    Tu as appris à afficher champ par champ, avec std::endl :
+
+    cpp
+    std::cout << c1.getFirstName() << std::endl;
+    std::cout << c1.getLastName() << std::endl;
+
+📝 À noter
+std::endl fait un retour à la ligne ; chaque champ peut ainsi être sur sa propre ligne.
+6. Ajouter des labels (texte fixe) à l’affichage
+
+    Tu as vu qu’on peut afficher du texte fixe + une valeur :
+
+    cpp
+    std::cout << "First name: " << c1.getFirstName() << std::endl;
+    std::cout << "Last name: " << c1.getLastName() << std::endl;
+
+📝 À noter
+On peut enchaîner texte fixe et valeurs avec << dans un même std::cout.
+Où tu en es exactement
+
+Tu as un main() qui :
+
+    Crée deux objets Contact c1; et Contact c2;.
+
+    Remplit les 5 champs de chacun.
+
+    Affiche chaque champ sur une ligne séparée, avec éventuellement des labels.
+
+Tu n’as pas encore :
+
+    De constructeur personnalisé (on ne l’a pas encore abordé, et ce n’est pas demandé maintenant).
+
+    De classe PhoneBook.
+
+    De gestion de commande (ADD, SEARCH, EXIT).
+
+    De formatage en colonnes (largeur fixe, troncature, etc.).
+
+Où reprendre la prochaine fois
+
+Pour repartir facilement, tu peux commencer la prochaine session par :
+
+    Recréer un main() minimal avec :
+
+    cpp
+    Contact c1;
+    Contact c2;
+
+    Remplir uniquement le prénom et le nom de c1 et c2.
+
+    Afficher avec des labels, un champ par ligne.
+
+Ensuite, on pourra :
+
+    Soit continuer à s’entraîner sur Contact (par exemple : afficher proprement un seul contact, avec des labels pour chaque champ).
+
+    Soit commencer doucement la classe PhoneBook (quand tu te sens prête), toujours notion par notion.
+
+Ce que tu peux noter dans ton cahier
+
+Tu peux structurer ta page ainsi :
+
+    Bleu : définitions / notions clés
+
+        « Objet = variable d’une classe »
+
+        « Plusieurs objets = plusieurs variables indépendantes du même type »
+
+    Noir : syntaxe de base
+
+        Contact c;
+
+        c.setFirstName("Alice");
+
+        std::cout << c.getFirstName() << std::endl;
+
+    Vert : exemples de code complets (un petit main avec c1 et c2).
+
+    Rouge : pièges / points d’attention
+
+        Les espaces dans les chaînes ("Alice " vs "Alice").
+
+        Chaque std::endl = une nouvelle ligne.
+
+Si tu veux, la prochaine fois tu peux me dire : « On reprend depuis le récapitulatif, étape X », et on continue exactement là où on s’est arrêté.

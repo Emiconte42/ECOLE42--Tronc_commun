@@ -1,0 +1,117 @@
+Voici un grand récapitulatif des **Modules C++ 00 à 04**, structuré module par module. L'objectif de ce cursus est de vous faire transiter d'une programmation procédurale (le C) vers le **Paradigme Orienté-Objet (POO)** en utilisant le standard **C++98**.
+
+---
+
+### ⚠️ Les Règles Générales (Le socle du C++ à 42)
+
+Avant de plonger dans les modules, voici les règles d'or qui s'appliquent globalement :
+
+- **Compilation :** `Wall -Wextra -Werror -std=c++98`.
+- **Adieu Norminette :** Vous êtes libre de votre style, mais le code doit être lisible. Le format de nommage exigé pour les classes est le `UpperCamelCase`.
+- **La Forme Canonique Orthodoxe (Orthodox Canonical Form) :** Obligatoire à partir du Module 02. Toute classe doit posséder 4 éléments :
+    1. Un constructeur par défaut.
+    2. Un constructeur de recopie.
+    3. Un opérateur d'affectation (`operator=`).
+    4. Un destructeur.
+- **Pas de fuites mémoire :** L'allocation dynamique est permise via `new` et `delete`, mais les fuites sont lourdement sanctionnées (utilisation de Valgrind requise).
+- **Pas de STL (Standard Template Library) :** Pas de `std::vector`, `std::map`, etc., avant le module 08.
+
+---
+
+### 📘 MODULE 00 : Les Fondations du C++ et l'Encapsulation
+
+Ce module sert de transition. Il introduit la syntaxe C++ et les bases de la création de classes.
+
+**🧠 Théorie et Définitions :**
+
+- **Namespaces (Espaces de noms) :** Permettent de regrouper des variables ou des fonctions sous un même "nom" pour éviter les conflits. On accède à leur contenu avec l'opérateur de résolution de portée `::` (ex: `std::cout`).
+- **Flux d'entrée/sortie (stdio streams) :** Remplacement de `printf` et `scanf` par `<iostream>`, `std::cout` (sortie), `std::cin` (entrée) et `std::endl` (retour à la ligne). L'opérateur `<<` ou `>>` indique la direction du flux.
+- **Classes et Encapsulation :** La grande nouveauté. Une classe est un "plan" pour créer des objets (instances). L'encapsulation utilise les mots-clés `public` (accessible de partout) et `private` (accessible uniquement depuis l'intérieur de la classe) pour masquer les détails d'implémentation.
+    - *Note :* La différence avec une `struct` est qu'une classe est `private` par défaut, tandis qu'une `struct` est `public` par défaut.
+- **Attributs et Fonctions Membres :** Variables et fonctions attachées à une instance spécifique de la classe.
+- **Pointeur `this` :** Un pointeur caché, passé automatiquement à chaque fonction membre, qui pointe sur l'instance courante manipulée.
+- **Liste d'initialisation :** Syntaxe dans les constructeurs (`Class::Class() : _var(1) {}`) obligatoire pour initialiser les constantes (`const`) ou les références.
+- **Fonctions et Attributs `const` :** Mettre `const` à la fin d'une fonction membre garantit que cette fonction ne modifiera **jamais** l'instance courante (Mode lecture seule).
+- **Membres de classe (`static`) :** Variables ou fonctions rattachées à la classe elle-même, et non à une instance spécifique. Elles sont partagées par toutes les instances.
+- **Pointeurs sur membres :** Syntaxe avancée (`.*` et `>*`) pour pointer vers un attribut ou une fonction à l'intérieur d'une classe.
+
+**🛠 Pratique :**
+
+- **Megaphone (ex00) :** Manipulation basique de strings.
+- **Phonebook (ex01) :** Créer un annuaire stockant des classes `Contact` (max 8) sans aucune allocation dynamique (`new` interdit). Apprentissage des Getters et Setters pour accéder aux attributs privés.
+
+---
+
+### 📗 MODULE 01 : Allocation Mémoire, Références et Pointeurs
+
+Ce module se concentre sur la gestion de la mémoire, un point où C++ diffère beaucoup du C.
+
+**🧠 Théorie et Définitions :**
+
+- **Allocation dynamique :** Adieu `malloc` et `free`. Bonjour `new` et `delete` (ou `new[]` et `delete[]` pour les tableaux).
+- **Stack (Pile) vs Heap (Tas) :** L'enjeu est de comprendre quand créer un objet localement (Stack, détruit automatiquement à la fin du bloc) ou dynamiquement (Heap via `new`, qui requiert un `delete` manuel).
+- **Les Références (`&`) :** Un concept vital en C++. Une référence est un alias vers une variable existante. Contrairement à un pointeur, elle **ne peut pas être NULL**, elle doit être initialisée dès sa création, et elle ne peut plus changer de cible. C'est beaucoup plus sûr à manipuler qu'un pointeur !
+- **L'instruction `switch` :** Alternative plus propre aux forêts de `if/else if/else`.
+
+**🛠 Pratique :**
+
+- **Zombies (ex00 & ex01) :** Créer des hordes de Zombies. Tester les allocations sur la Stack (`randomChump`) vs sur la Heap (`newZombie` / `zombieHorde`) et gérer leur destruction (`delete[]`).
+- **Unnecessary violence (ex03) :** Créer une `Weapon` et l'équiper à `HumanA` et `HumanB`. L'objectif est d'utiliser une Référence pour `HumanA` (qui est toujours armé dès le départ) et un Pointeur pour `HumanB` (qui peut ne pas avoir d'arme, donc pointer sur `NULL`).
+- **Sed is for losers (ex04) :** Manipulation des flux de fichiers (`std::ifstream` et `std::ofstream`) et des méthodes de `std::string` pour remplacer des mots dans un fichier.
+- **Harl (ex05) :** Utilisation intelligente des pointeurs sur fonctions membres pour appeler la bonne méthode (DEBUG, INFO, etc.) sans utiliser un seul `if/else`.
+
+---
+
+### 📕 MODULE 02 : Polymorphisme Ad-Hoc et Forme Canonique
+
+Ici, on entre dans les mathématiques et la surcharge des comportements par défaut du C++.
+
+**🧠 Théorie et Définitions :**
+
+- **Polymorphisme ad-hoc (Surcharge de fonctions) :** La capacité d'avoir plusieurs fonctions ou constructeurs portant **le même nom**, mais avec des paramètres différents (ex: `Fixed()`, `Fixed(int)`, `Fixed(float)`). Le compilateur choisira le bon en fonction de ce que vous lui donnez.
+- **Nombres à virgule fixe (Fixed-point numbers) :** Une alternative aux floats. Ils stockent les nombres décimaux dans des entiers bruts à l'aide de décalages de bits (bit-shifting). Offre un compromis entre performance et précision.
+- **Surcharge d'opérateurs (Operator Overloading) :** La capacité de redéfinir comment votre classe réagit aux opérateurs classiques (`+`, , `<`, `>`, `==`, `++`). Vous pouvez également surcharger l'opérateur de flux `<<` pour indiquer à `std::cout` comment afficher votre objet.
+
+**🛠 Pratique :**
+
+- **Fixed (ex00, ex01, ex02) :** Écrire une classe mathématique complète en respectant la **Forme Canonique Orthodoxe**. Gérer la conversion d'entiers et de flottants vers la virgule fixe, et redéfinir tous les opérateurs arithmétiques.
+- **BSP (ex03) :** Algorithme mathématique (Binary Space Partitioning) utilisant votre classe `Fixed` pour vérifier si un point 2D se trouve à l'intérieur d'un triangle.
+
+---
+
+### 📙 MODULE 03 : L'Héritage (Inheritance)
+
+Premier grand pilier de la POO : l'héritage, ou comment créer des relations parent-enfant entre les classes.
+
+**🧠 Théorie et Définitions :**
+
+- **Héritage :** Une classe dérivée ("fille") hérite des attributs et méthodes de sa classe de base ("mère"). Cela permet de réutiliser le code et de créer une hiérarchie.
+- **La portée `protected` :** Nouveau mot-clé d'encapsulation. Un attribut `protected` est inaccessible depuis l'extérieur (comme `private`), mais **devient accessible par les classes dérivées**.
+- **L'ordre de Construction / Destruction :** Lorsqu'une classe fille est instanciée, le programme appelle **d'abord** le constructeur de la classe mère, puis celui de la fille. À l'inverse, lors de la destruction, le destructeur de la fille est appelé en premier, suivi de celui de la mère.
+- **L'héritage Multiple et le "Problème du Diamant" :** Une classe peut hériter de plusieurs classes mères. Si ces classes mères partagent un ancêtre commun (ou des attributs de même nom), le compilateur ne sait plus à quelle version faire référence (phénomène de *shadowing*).
+
+**🛠 Pratique :**
+
+- **ClapTrap (ex00) :** Création d'une classe de base générique représentant un robot attaquant.
+- **ScavTrap & FragTrap (ex01, ex02) :** Héritage de `ClapTrap` pour créer des robots spécialisés avec leurs propres statistiques et capacités spéciales (`guardGate` et `highFivesGuys`).
+- **DiamondTrap (ex03) :** Le monstre absolu. Une classe qui hérite **à la fois** de `ScavTrap` et `FragTrap`. Vous obligera à manipuler l'opérateur de résolution de portée (ex: `ScavTrap::attack()`) et le mot-clé `virtual` dans l'héritage pour résoudre le problème du diamant.
+
+---
+
+### 📓 MODULE 04 : Polymorphisme de sous-type, Classes Abstraites et Interfaces
+
+L'aboutissement de ces semaines. L'architecture de haut niveau du C++.
+
+**🧠 Théorie et Définitions :**
+
+- **Le Polymorphisme de Sous-type :** La capacité de pointer vers une classe enfant (`Dog`) en utilisant un pointeur de sa classe mère (`Animal*`). C'est le cœur de la POO.
+- **Le mot-clé `virtual` :** Indispensable pour le polymorphisme. Placé devant une méthode de la classe mère (ex: `virtual void makeSound()`), il dit au compilateur : "Si un pointeur de type Mère pointe vers une classe Fille, va exécuter la fonction de la classe Fille à la place".
+- **Les Destructeurs Virtuels :** **Crucial.** Si une classe mère n'a pas de destructeur virtuel (`virtual ~Animal()`), faire un `delete` sur un pointeur `Animal*` ne détruira pas la part "Fille" de l'objet, créant des fuites mémoire béantes (memory leaks).
+- **Classes Abstraites :** Si une fonction virtuelle est "pure", c'est-à-dire suivie de `= 0` (ex: `virtual void makeSound() = 0;`), la classe mère devient **abstraite**. Cela signifie qu'il est physiquement impossible de l'instancier (`new Animal()` devient interdit par le compilateur).
+- **Interfaces :** Le C++98 n'ayant pas de mot-clé `interface`, on simule ce concept en créant une classe abstraite pure (une classe contenant *uniquement* des méthodes `= 0` et un destructeur virtuel vide). Elle sert de "Contrat" que les classes enfants devront obligatoirement remplir.
+- **Copie Profonde (Deep Copy) :** Lorsqu'une classe possède de la mémoire dynamique (des pointeurs), une copie classique se contentera de copier l'adresse mémoire (Shallow copy). La copie profonde consiste à allouer une **nouvelle** mémoire et y copier les valeurs, pour que les objets soient totalement indépendants.
+
+**🛠 Pratique :**
+
+- **Animal, Dog & Cat (ex00 & ex01) :** Résolution dynamique avec le mot-clé `virtual`. Gestion complexe des fuites mémoire en dotant les chiens et chats d'un objet `Brain*` (cerveau alloué dynamiquement). Preuve que vos constructeurs de recopie font des *Deep Copies* indépendantes.
+- **Interfaces et Materia (ex03) :** Le boss final (façon Final Fantasy). Implémentation d'Interfaces (`IMateriaSource`, `ICharacter`). Gestion d'inventaires, polymorphisme avancé (lancer une attaque sans connaitre la classe `Ice` ou `Cure` de la magie, grâce au design pattern *Prototype / Clone*), et maîtrise absolue des fuites mémoires lors des déséquipements ou copies d'inventaire.

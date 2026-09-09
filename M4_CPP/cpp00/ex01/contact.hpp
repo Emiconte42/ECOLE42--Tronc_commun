@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
 
-class Contact
-{
+class Contact {
 	private:
 		std::string	_first_name;
 		std::string	_last_name;
@@ -49,4 +48,15 @@ class Contact
 		std::string	getDarkestSecret() const {
 			return _darkest_secret;
 		}
+};
+
+class PhoneBook
+{
+	private:
+		Contact _contacts[8];
+		int _count;
+
+	public: // ici les methodes : ajouter, chercher ect... ADD, SEARCH ... voir sujet
+		void addContact();
+		void searchContact();
 };
