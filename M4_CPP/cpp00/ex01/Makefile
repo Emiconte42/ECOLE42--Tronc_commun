@@ -14,7 +14,7 @@ CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = objs/
 
-SRCS = 	main.cpp
+SRCS = 	main.cpp Contact.cpp
 
 # **************************************************************************** #
 #                                   COMPIL                                    #

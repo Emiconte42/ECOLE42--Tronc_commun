@@ -3,33 +3,33 @@
 
 int main()
 {
-	Contact c1;  // on crée un objet de type Contact, nommé c comme un int x;
-	Contact c2;
-	c1.setFirstName("Alice "); // appelle la méthode setFirstName sur c;
-	c1.setLastName("Dupont ");
-	c1.setNickName("Aliiii ");
-	c1.setPhoneNumber("0503020100 ");
-	c1.setDarkestSecret("test ");
+	Contact c1 ("aaA", "AAA", "AAA", "AAA", "AAA");  // on crée un objet de type Contact, nommé c comme un int x;
+	// Contact c2;
+	// c1.setFirstName("Alice "); // appelle la méthode setFirstName sur c;
+	// c1.setLastName("Dupont ");
+	// c1.setNickName("Aliiii ");
+	// c1.setPhoneNumber("0503020100 ");
+	// c1.setDarkestSecret("test ");
 	std::cout << c1.getFirstName()  << std::endl;
 	std::cout << c1.getLastName() << std::endl;
 	std::cout << c1.getNickName() << std::endl;
 	std::cout << c1.getPhoneNumber() << std::endl;
 	std::cout << c1.getDarkestSecret() << std::endl;
-	c2.setFirstName("Bob "); // appelle la méthode setFirstName sur c;
-	c2.setLastName("Perluy ");
-	c2.setNickName("bobi ");
-	c2.setPhoneNumber("0503020100 ");
-	c2.setDarkestSecret("oleeee ");
-	std::cout << c2.getFirstName()  << std::endl;
-	std::cout << c2.getLastName() << std::endl;
-	std::cout << c2.getNickName() << std::endl;
-	std::cout << c2.getPhoneNumber() << std::endl;
-	std::cout << c2.getDarkestSecret() << std::endl;
+	// c2.setFirstName("Bob "); // appelle la méthode setFirstName sur c;
+	// c2.setLastName("Perluy ");
+	// c2.setNickName("bobi ");
+	// c2.setPhoneNumber("0503020100 ");
+	// c2.setDarkestSecret("oleeee ");
+	// std::cout << c2.getFirstName()  << std::endl;
+	// std::cout << c2.getLastName() << std::endl;
+	// std::cout << c2.getNickName() << std::endl;
+	// std::cout << c2.getPhoneNumber() << std::endl;
+	// std::cout << c2.getDarkestSecret() << std::endl;
 
-	Contact contacts[8];
+	// Contact contacts[8];
 	
-	// c.setLastName("DUPONT");
-	// std::cout << c.getLastName() << std::endl;
+	// // c.setLastName("DUPONT");
+	// // std::cout << c.getLastName() << std::endl;
 	return 0;
 }
 /*

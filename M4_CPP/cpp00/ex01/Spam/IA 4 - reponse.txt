@@ -1,0 +1,285 @@
+Oui, je relève le défi. Ta feuille de route est bonne, mais je vais la réorganiser légèrement pour éviter les retours en arrière et rester fidèle à l’exercice ex01 de Module 00.
+
+Le sujet officiel impose notamment : C++98, compilation avec -Wall -Wextra -Werror, deux classes Contact et PhoneBook, un tableau fixe de 8 contacts, aucune allocation dynamique, les commandes ADD, SEARCH, EXIT, et une séparation claire entre déclaration et implémentation. Il demande aussi des noms de classes en UpperCamelCase et des fichiers nommés selon les classes. cite cite
+Module 00 — Progression
+Déjà étudié
+
+✓ Classe
+✓ Objet
+✓ Attributs
+✓ Méthodes
+✓ private et public
+✓ Encapsulation
+✓ Getters
+✓ Setters
+✓ Contact
+✓ État d’un objet
+✓ Objet comme attribut
+✓ Tableau d’objets
+✓ Indices d’un tableau
+✓ Tableau fixe de 8 éléments
+✓ Compteur _count
+✓ Prochaine case libre
+✓ Conservation de l’état
+À étudier
+
+⬜ Synthèse visuelle des notions déjà vues
+⬜ Fichiers .hpp et .cpp
+⬜ Constructeur par défaut
+⬜ Constructeur avec paramètres
+⬜ Initialisation
+⬜ Liste d’initialisation
+⬜ Objet nécessaire dans un tableau
+⬜ Assignation entre objets
+⬜ Compteur et emplacement d’écriture
+⬜ Ordre circulaire
+⬜ std::getline
+⬜ Validation des champs non vides
+⬜ Implémentation progressive de ADD
+⬜ Boucle principale
+⬜ Commandes ADD, SEARCH, EXIT
+⬜ Affichage de SEARCH
+⬜ std::setw
+⬜ Alignement à droite
+⬜ Troncature à 10 caractères
+⬜ Validation de l’index
+⬜ Structuration finale des fichiers
+⬜ Makefile
+⬜ Tests et cas limites
+⬜ Préparation à la peer evaluation
+Correction importante de la progression
+
+Il y a une notion indispensable qui doit être placée très tôt : le constructeur par défaut.
+
+Pourquoi ? Parce que cette déclaration :
+
+cpp
+Contact contacts[8];
+
+demande au compilateur de créer automatiquement huit objets Contact. Pour comprendre pourquoi cela fonctionne — ou pourquoi cela peut échouer — il faut comprendre les constructeurs avant de finaliser le tableau dans PhoneBook.
+
+Je suivrai donc cet ordre :
+
+    Synthèse visuelle de ce que tu connais déjà.
+
+    Fichiers .hpp et .cpp.
+
+    Constructeurs.
+
+    Initialisation et listes d’initialisation.
+
+    Tableau de Contact construit correctement.
+
+    Assignation entre objets.
+
+    Compteur et écriture d’un contact.
+
+    Ordre circulaire.
+
+    Lecture avec std::getline.
+
+    Validation des champs.
+
+    Construction progressive de ADD.
+
+    Boucle principale.
+
+    SEARCH.
+
+    Formatage avec std::setw.
+
+    Troncature.
+
+    Validation de l’index.
+
+    Makefile.
+
+    Tests finaux et peer evaluation.
+
+Ainsi, nous ne commencerons pas ADD avant d’avoir compris les objets qui doivent être créés et stockés.
+État de ton code actuel
+
+Ton travail contient déjà les bonnes idées générales :
+
+    Contact possède cinq chaînes privées.
+
+    Des setters et getters sont prévus.
+
+    Un constructeur avec paramètres existe dans Contact.cpp.
+
+    Tu as commencé à tester un objet Contact dans main.cpp.
+
+    Le Makefile utilise bien -Wall -Wextra -Werror -std=c++98. cite cite cite
+
+Mais il y a actuellement plusieurs problèmes de structure que nous corrigerons progressivement, sans te donner la solution complète :
+
+    Contact.hpp semble contenir aussi la déclaration de PhoneBook.
+
+    Les include nécessaires apparaissent incomplets dans le fichier fourni.
+
+    Plusieurs fonctions sont commencées directement dans le header.
+
+    Certaines accolades semblent manquer dans les getters et setters.
+
+    PhoneBook n’a pas encore son propre couple PhoneBook.hpp / PhoneBook.cpp.
+
+    Le tableau Contact _contacts[8] nécessite de décider comment les huit contacts sont construits.
+
+    Le Makefile ne compile actuellement que main.cpp et Contact.cpp, pas encore PhoneBook.cpp.
+
+Ce sont de bons points de départ pédagogiques : nous allons les corriger une notion à la fois.
+Organisation prévue des chapitres
+
+Chaque chapitre aura exactement cette structure :
+
+text
+Chapitre XX
+
+Titre
+
+Définition
+
+Pourquoi cette notion existe
+
+Exemple simple
+
+Explication
+
+Points importants
+
+Convention(s)
+
+Lien avec mon projet
+
+Résumé en une phrase
+
+Je respecterai aussi les règles suivantes :
+
+    aucun programme complet ;
+
+    seulement de petits morceaux indépendants ;
+
+    aucun code copié sans explication ;
+
+    chaque notion reliée à Contact ou PhoneBook ;
+
+    progression affichée au début de chaque séance ;
+
+    respect de C++98 ;
+
+    pas de vector, pas de map, pas d’algorithmes STL ;
+
+    pas d’allocation dynamique ;
+
+    aucune fonction implémentée dans les headers, sauf nécessité explicitement autorisée ;
+
+    une classe par fichier d’en-tête et fichier d’implémentation.
+
+Le sujet de Module 00 indique que les classes doivent être nommées en UpperCamelCase et que leurs fichiers doivent suivre le nom de la classe, par exemple Contact.hpp et Contact.cpp. Il recommande également des headers autonomes et protégés contre les inclusions multiples. cite
+La règle sur les chapitres terminés
+
+Nous ne passerons pas automatiquement au chapitre suivant.
+
+À la fin de chaque chapitre, je te donnerai :
+
+    une question de compréhension ;
+
+    un petit exercice ;
+
+    parfois une modification limitée de ton propre code ;
+
+    une question de type peer evaluation.
+
+Tu répondras avec tes propres mots ou ton petit morceau de code. Ensuite seulement, nous continuerons.
+
+Cela évitera exactement le problème que tu rencontres actuellement : connaître plusieurs termes, mais ne plus savoir dans quel ordre ils s’utilisent.
+Calendrier sur un mois et demi
+
+C’est réalisable, à condition de travailler régulièrement et de ne pas chercher à terminer un exercice en une seule séance.
+Semaines 1 et 2
+
+    Synthèse globale.
+
+    Headers et fichiers .cpp.
+
+    Constructeurs.
+
+    Initialisation.
+
+    Tableau de contacts.
+
+    Assignation.
+
+    Compteur.
+
+Semaines 3 et 4
+
+    std::getline.
+
+    Champs non vides.
+
+    ADD.
+
+    Boucle principale.
+
+    Gestion de EXIT.
+
+    Premiers tests.
+
+Semaines 5 et 6
+
+    SEARCH.
+
+    Index.
+
+    std::setw.
+
+    Troncature.
+
+    Formatage exact.
+
+    Makefile.
+
+    Cas limites.
+
+    Préparation peer evaluation.
+
+Cette organisation est plus efficace que de commencer directement par une « implémentation complète de ADD », car ADD dépend déjà des constructeurs, de l’assignation, de la lecture et du stockage dans le tableau.
+Notre point de départ
+
+Le prochain chapitre sera :
+
+text
+Chapitre 01
+
+Synthèse visuelle : de la classe au PhoneBook
+
+Il ne nous apprendra pas une nouvelle notion. Il servira à relier tout ce que tu connais déjà :
+
+text
+Classe
+│
+├── décrit des objets
+├── contient des attributs
+└── contient des méthodes
+        │
+        ↓
+Objet
+│
+├── possède son propre état
+└── conserve cet état entre les appels
+        │
+        ↓
+Contact
+│
+├── possède cinq informations
+└── expose des méthodes pour les lire ou les modifier
+        │
+        ↓
+PhoneBook
+│
+├── possède huit objets Contact
+├── possède un compteur
+└── fournit les opérations ADD et SEARCH
+
+Je confirme donc : oui, la méthode est cohérente, le délai est exigeant mais réaliste, et je modifierai la feuille de route uniquement lorsqu’une notion indispensable doit être ajoutée.

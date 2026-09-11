@@ -1,0 +1,323 @@
+Je suis une eleve de 42.
+Je travaille actuellement sur Module 00, exercice ex01 - My Awesome PhoneBook.
+Je te joins : le sujet officiel ; mes fichiers actuels ; la convention a respecter; mon code.
+Le cours doit être basé en priorité sur le sujet officiel et sur mon code actuel. Respecte les contraintes du sujet avant toute autre considération.
+
+OBJECTIF
+Je ne veux pas simplement réussir le projet. Je veux apprendre le C++. Je veux construire un cahier personnel qui me servira encore dans les Modules 01, 02, 03…
+Je veux être capable de comprendre et d'expliquer mon code pendant une peer evaluation. Le cours doit donc être conçu comme un véritable manuel progressif.
+
+MA MÉTHODE D'APPRENTISSAGE
+
+Je retiens beaucoup mieux lorsque :
+
+les chapitres sont très courts ; 
+une seule notion est abordée à la fois ;
+les explications sont simples ;
+les exemples sont très petits ;
+chaque notion est immédiatement reliée au projet.
+
+Je ne veux pas brûler les étapes. Je préfère comprendre parfaitement une notion plutôt que d'en voir plusieurs rapidement.
+PIQÛRE DE RAPPEL (TRÈS IMPORTANTE)
+Une fois les chapitres sur les tableaux terminés, je souhaite un chapitre de synthèse.
+Par exemple sous forme de schéma.
+Quelque chose comme :
+Classe
+│
+├── possède des attributs
+│
+├── possède des méthodes
+│
+└── permet de créer des objets
+↓
+Objet
+↓
+possède son propre état
+↓
+les méthodes modifient cet état
+↓
+PhoneBook
+↓
+possède un tableau de Contact
+↓
+chaque Contact est un objet indépendant
+
+Je veux une vision globale. Je veux comprendre les relations entre toutes les notions apprises.
+Je veux que ce soit visuel si necessaire et plus simple a la comprehension.
+
+ENSUITE SEULEMENT
+
+Une fois cette synthèse terminée, tu peux commencer la suite.
+
+Très progressivement. C'est a toi de me donner le nom des chapitres. 
+Pour info ce que j'ai vu pour l'instant : 
+Une classe est un modèle qui décrit un type d'objet.
+Un objet est une instance créée à partir d'une classe.
+Les attributs sont les variables qui représentent les données d'un objet.
+Les méthodes sont les fonctions qui permettent d'agir sur un objet.
+private protège les données internes d'une classe.
+public définit ce qui est accessible depuis l'extérieur de la classe.
+L'encapsulation consiste à manipuler les attributs uniquement via les méthodes publiques.
+Les getters permettent de lire la valeur d'un attribut privé.
+Les setters permettent de modifier la valeur d'un attribut privé.
+La classe Contact représente une fiche de contact contenant plusieurs informations.
+Chaque objet possède son propre état, c'est-à-dire ses propres valeurs d'attributs.
+Les méthodes modifient ou consultent l'état de l'objet auquel elles appartiennent.
+Une classe peut contenir plusieurs attributs de types différents.
+Un attribut peut être un autre objet, comme un Contact dans une autre classe.
+Un attribut peut être un tableau d'objets, par exemple Contact _contacts[8];.
+La classe PhoneBook possède un tableau de huit objets Contact.
+Un tableau possède des indices qui commencent toujours à 0.
+Le dernier indice d'un tableau de 8 éléments est 7.
+Le tableau connaît sa taille, mais pas le nombre d'éléments réellement utilisés.
+Le compteur _count mémorise le nombre de contacts enregistrés.
+La prochaine case libre est toujours _contacts[_count] tant que le tableau n'est pas plein.
+Un objet conserve son état entre les différents appels de ses méthodes.
+
+Un autre ia m'a dit qu'il reste a faire : 
+Lors d'un ADD, les informations sont saisies puis stockées dans le prochain emplacement libre.
+Le projet se déroule en deux phases : remplir le tableau puis remplacer les anciens contacts.
+Lorsque le tableau est plein, un nouveau contact remplace progressivement les plus anciens.
+Le remplacement suit un ordre circulaire pour réutiliser les huit cases du tableau.
+Chaque classe sera séparée en un fichier d'en-tête (.hpp) et un fichier d'implémentation (.cpp).
+Le projet doit respecter les contraintes du sujet 42, notamment C++98, les commandes ADD, SEARCH, EXIT et un tableau fixe de 8 contacts.
+Faire une synthèse visuelle de toutes ces notions (classe → objet → attribut → méthode → état → PhoneBook → Contact).
+Les constructeurs.
+L'initialisation.
+L'assignation.
+Les listes d'initialisation.
+L'implémentation complète de ADD.
+std::getline.
+La boucle principale du programme.
+L'implémentation de SEARCH.
+std::setw et le formatage des colonnes.
+La troncature des chaînes à 10 caractères.
+La validation des entrées utilisateur.
+Le Makefile.
+Les vérifications finales et la préparation à la peer evaluation.
+
+Es tu ok avec cette feuille de route pour terminer sereinement le Module 00 ? 
+Si tu penses que ce n'est pas ok tu es libre d'en modifier sont etat. 
+Je veux un cours simple efficace, ou je ne perd pas de temps a revenir en arriere.
+J'ai avance avec une autre ia et je suis torp perdu.
+
+Pour chaque chapitre, ils doivent avoir exactement cette structure.
+
+Chapitre XX
+
+Titre
+
+Définition
+
+Pourquoi cette notion existe
+
+Exemple simple
+
+Explication
+
+Points importants
+
+Convention(s)
+
+Lien avec mon projet
+
+Résumé en une phrase
+
+Je veux pouvoir recopier directement le chapitre dans mon cahier.
+
+LE CODE
+
+Je ne veux jamais la solution complète.
+
+Je veux seulement :
+
+de petits exemples ;
+quelques lignes de code qui n'ont rien a voir avec le sujet que je devrais adapter si necessaire ;
+des morceaux indépendants.
+
+LE PROJET DOIT ÊTRE LE FIL CONDUCTEUR
+
+Chaque notion doit être reliée à PhoneBook.
+
+À chaque chapitre, explique :
+
+Pourquoi apprend-on cette notion ?
+
+Où sera-t-elle utilisée dans mon projet ?
+
+RESPECT STRICT DU SUJET 42
+
+Le sujet est la priorité.
+
+Respecte systématiquement les contraintes du sujet.
+
+Par exemple :
+
+un Contact est une classe ;
+un PhoneBook est une classe ;
+PhoneBook possède un tableau de 8 Contact ;
+aucune allocation dynamique ;
+uniquement les commandes ADD, SEARCH et EXIT ;
+les champs ne doivent jamais être vides ;
+SEARCH doit respecter le format demandé (4 colonnes de largeur 10, alignement à droite, troncature avec .) ;
+respecter C++98 ;
+ne pas introduire des solutions incompatibles avec les consignes.
+RESPECT DE L'ORGANISATION DES FICHIERS
+
+Je veux également apprendre la manière de structurer un projet C++.
+
+Lorsque nous créerons une nouvelle classe, rappelle systématiquement :
+
+Par exemple :
+
+Contact.hpp
+
+↓
+
+déclaration de la classe
+
+Contact.cpp
+
+↓
+
+implémentation des méthodes
+
+Même chose pour :
+
+PhoneBook.hpp
+PhoneBook.cpp
+
+Explique pourquoi on sépare le .hpp du .cpp.
+
+Rappelle aussi que, dans ce module, les noms des classes et des fichiers doivent respecter les conventions demandées par 42 (une classe PhoneBook dans PhoneBook.hpp / PhoneBook.cpp) et les bonnes pratiques de nommage.
+
+CONVENTIONS
+
+À chaque chapitre, indique :
+
+Convention 42
+
+Uniquement les règles utiles à la notion étudiée.
+
+Bonne pratique C++
+
+Utilise toujours la convention : le Google C++ Style Guide : https://google.github.io/styleguide/cppguide.html#File_Names
+
+Mais uniquement si cela concerne la notion étudiée.
+
+Pas de cours de style complet.
+
+VISION GLOBALE
+
+Au début de chaque séance, affiche la progression.
+
+Par exemple :
+
+Module 00
+
+✓ Classe
+
+✓ Objet
+
+✓ Attributs
+
+✓ Méthodes
+
+✓ Encapsulation
+
+✓ Getters
+
+✓ Setters
+
+✓ Tableaux
+
+✓ Vision globale des objets
+
+⬜ Constructeurs
+
+⬜ Initialisation
+
+⬜ Assignation
+
+⬜ Liste d'initialisation
+
+⬜ PhoneBook
+
+⬜ ADD
+
+⬜ getline
+
+⬜ Boucle principale
+
+⬜ SEARCH
+
+⬜ std::setw
+
+⬜ Troncature
+
+⬜ Validation des entrées
+
+⬜ Makefile
+
+⬜ Préparation peer evaluation
+
+⬜ Fin du Module 00
+
+Je veux toujours savoir où j'en suis.
+
+Voici une synthèse de tout ce que j'ai vu jusqu'à présent, une ligne par notion, dans l'ordre.
+Une classe est un modèle qui décrit un type d'objet.
+Un objet est une instance créée à partir d'une classe.
+Les attributs sont les variables qui représentent les données d'un objet.
+Les méthodes sont les fonctions qui permettent d'agir sur un objet.
+private protège les données internes d'une classe.
+public définit ce qui est accessible depuis l'extérieur de la classe.
+L'encapsulation consiste à manipuler les attributs uniquement via les méthodes publiques.
+Les getters permettent de lire la valeur d'un attribut privé.
+Les setters permettent de modifier la valeur d'un attribut privé.
+La classe Contact représente une fiche de contact contenant plusieurs informations.
+Chaque objet possède son propre état, c'est-à-dire ses propres valeurs d'attributs.
+Les méthodes modifient ou consultent l'état de l'objet auquel elles appartiennent.
+Une classe peut contenir plusieurs attributs de types différents.
+Un attribut peut être un autre objet, comme un Contact dans une autre classe.
+Un attribut peut être un tableau d'objets, par exemple Contact _contacts[8];.
+La classe PhoneBook possède un tableau de huit objets Contact.
+Un tableau possède des indices qui commencent toujours à 0.
+Le dernier indice d'un tableau de 8 éléments est 7.
+Le tableau connaît sa taille, mais pas le nombre d'éléments réellement utilisés.
+Le compteur _count mémorise le nombre de contacts enregistrés.
+La prochaine case libre est toujours _contacts[_count] tant que le tableau n'est pas plein.
+Un objet conserve son état entre les différents appels de ses méthodes.
+
+Ce qu'il resterait à apprendre (pas sur car a toi de me faire le recap des elements)
+Lors d'un ADD, les informations sont saisies puis stockées dans le prochain emplacement libre.
+Le projet se déroule en deux phases : remplir le tableau puis remplacer les anciens contacts.
+Lorsque le tableau est plein, un nouveau contact remplace progressivement les plus anciens.
+Le remplacement suit un ordre circulaire pour réutiliser les huit cases du tableau.
+Chaque classe sera séparée en un fichier d'en-tête (.hpp) et un fichier d'implémentation (.cpp).
+Le projet doit respecter les contraintes du sujet 42, notamment C++98, les commandes ADD, SEARCH, EXIT et un tableau fixe de 8 contacts.
+ Faire une synthèse visuelle de toutes ces notions (classe → objet → attribut → méthode → état → PhoneBook → Contact).
+ Les constructeurs.
+ L'initialisation.
+ L'assignation.
+ Les listes d'initialisation.
+ L'implémentation complète de ADD.
+ std::getline.
+ La boucle principale du programme.
+ L'implémentation de SEARCH.
+ std::setw et le formatage des colonnes.
+ La troncature des chaînes à 10 caractères.
+ La validation des entrées utilisateur.
+ Le Makefile.
+ Les vérifications finales et la préparation à la peer evaluation.
+
+RÈGLE PÉDAGOGIQUE LA PLUS IMPORTANTE
+
+Si tu estimes qu'une notion est indispensable pour comprendre la suivante, crée un chapitre supplémentaire, même si elle n'apparaît pas explicitement dans le sujet.
+
+En revanche, n'anticipe jamais une notion qui ne sera utile que plusieurs chapitres plus tard.
+
+Le cours doit toujours suivre une progression logique, du plus simple au plus complexe.
+
+
+Dernier element TRES important, le timing, j'ai absolument et uniquement que 1 mois et demi pour faire tous les sujets que je te joins, donc il faut etre efficace et methodique, releve tu le defi ?

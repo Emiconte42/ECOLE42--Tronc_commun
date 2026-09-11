@@ -1,62 +1,43 @@
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
+
 #include <iostream>
 #include <string>
 
 class Contact {
 	private:
-		std::string	_first_name;
-		std::string	_last_name;
-		std::string	_nick_name;
-		std::string	_phone_number;
-		std::string	_darkest_secret;
+		std::string	_firstname;
+		std::string	_lastname;
+		std::string	_nickname;
+		std::string	_phonenumber;
+		std::string	_darkestsecret;
 	public:
-		void	setFirstName(const std::string &firstname) {
-			_first_name = firstname;
-		}
 
-		std::string	getFirstName() const {
-			return _first_name;
-		}
+		// Constructeur par defaut
+		Contact();
 
-		void	setLastName(const std::string &lastname) {
-			_last_name = lastname;
-		}
+		//  Constructeur avec 5 paramètres (vu avec Logan)
+		Contact(
+			const std::string& firstname,
+			const std::string& lastname,
+			const std::string& nickname,
+			const std::string& phonenumber,
+			const std::string& darkestsecret
+		);
 
-		std::string	getLastName() const {
-			return _last_name;
-		}
+		// setters
+		void	setFirstName(const std::string &firstname);
+		void	setLastName(const std::string &lastname);
+		void	setNickName(const std::string &nickname);
+		void	setPhoneNumber(const std::string &phonenumber);
+		void	setDarkestSecret(const std::string &darkestsecret);
 
-		void	setNickName(const std::string &nickname) {
-			_nick_name = nickname;
-		}
-
-		std::string	getNickName() const {
-			return _nick_name;
-		}
-
-		void	setPhoneNumber(const std::string &phonenumber) {
-			_phone_number = phonenumber;
-		}
-
-		std::string	getPhoneNumber() const {
-			return _phone_number;
-		}
-
-		void	setDarkestSecret(const std::string &darkestsecret) {
-			_darkest_secret = darkestsecret;
-		}
-
-		std::string	getDarkestSecret() const {
-			return _darkest_secret;
-		}
+		// getters
+		std::string	getFirstName() const;
+		std::string	getLastName() const;
+		std::string	getNickName() const;
+		std::string	getPhoneNumber() const;
+		std::string	getDarkestSecret() const;
 };
 
-class PhoneBook
-{
-	private:
-		Contact _contacts[8];
-		int _count;
-
-	public: // ici les methodes : ajouter, chercher ect... ADD, SEARCH ... voir sujet
-		void addContact();
-		void searchContact();
-};
+#endif
