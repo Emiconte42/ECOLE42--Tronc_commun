@@ -1,20 +1,40 @@
 #include <iostream>
 #include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 int main()
 {
-	Contact c1 ("aaA", "AAA", "AAA", "AAA", "AAA");  // on crée un objet de type Contact, nommé c comme un int x;
+	PhoneBook phoneBook;
+	std::string texte;
+	
+	while (texte != "EXIT")
+	{
+		std::cout << "Entrez une commande (ADD, SEARCH, EXIT) : " << std::endl;
+		std::getline(std::cin, texte);
+		if (texte == "ADD")
+		{
+			// On appelera phoneBook.addContact(); pour ajouter un contact;
+		}
+		else if(texte == "SEARCH")
+		{
+			// on appellera phoneBook.searchContact(); ici plus tard
+		}
+		// si texte == "EXIT", rien à faire de spécial : la boucle s'arrête toute seule
+		// toute autre saisie est ignorée automatiquement (aucun else nécessaire)
+	}
+	// Contact c1 ("aaA", "AAA", "AAA", "AAA", "AAA");  // on crée un objet de type Contact, nommé c comme un int x;
 	// Contact c2;
 	// c1.setFirstName("Alice "); // appelle la méthode setFirstName sur c;
 	// c1.setLastName("Dupont ");
 	// c1.setNickName("Aliiii ");
 	// c1.setPhoneNumber("0503020100 ");
 	// c1.setDarkestSecret("test ");
-	std::cout << c1.getFirstName()  << std::endl;
-	std::cout << c1.getLastName() << std::endl;
-	std::cout << c1.getNickName() << std::endl;
-	std::cout << c1.getPhoneNumber() << std::endl;
-	std::cout << c1.getDarkestSecret() << std::endl;
+	// std::cout << age << std::endl;
+	// std::cout << c1.getFirstName()  << std::endl;
+	// std::cout << c1.getLastName() << std::endl;
+	// std::cout << c1.getNickName() << std::endl;
+	// std::cout << c1.getPhoneNumber() << std::endl;
+	// std::cout << c1.getDarkestSecret() << std::endl;
 	// c2.setFirstName("Bob "); // appelle la méthode setFirstName sur c;
 	// c2.setLastName("Perluy ");
 	// c2.setNickName("bobi ");

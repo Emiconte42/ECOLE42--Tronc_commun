@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Contact.hpp"
 
 class PhoneBook
 {
@@ -11,6 +12,7 @@ class PhoneBook
 		int _count;
 
 	public: // ici les methodes : ajouter, chercher ect... ADD, SEARCH ... voir sujet
+		PhoneBook();
 		void addContact();
 		void searchContact();
 };

@@ -2,7 +2,7 @@
 
 ## Contexte
 
-- **Étudiant** : 
+- **Étudiant** 
 - **Cadre** : École 42, cursus C++
 - **Objectif global** : terminer tous les modules **cpp00 à cpp04** et leurs exercices dans environ un mois et demi, tout en comprenant et en pouvant expliquer le code en peer evaluation.
 - **Exercice actuel** : `cpp00/ex01` — **My Awesome PhoneBook**.
