@@ -85,16 +85,16 @@ Un Contact a 5 champs ; tu sais maintenant les remplir tous via les setters.
 
 📝 À noter
 std::endl fait un retour à la ligne ; chaque champ peut ainsi être sur sa propre ligne.
-6. Ajouter des labels (texte fixe) à l’affichage
+6. Ajouter des labels (text fixe) à l’affichage
 
-    Tu as vu qu’on peut afficher du texte fixe + une valeur :
+    Tu as vu qu’on peut afficher du text fixe + une valeur :
 
     cpp
     std::cout << "First name: " << c1.getFirstName() << std::endl;
     std::cout << "Last name: " << c1.getLastName() << std::endl;
 
 📝 À noter
-On peut enchaîner texte fixe et valeurs avec << dans un même std::cout.
+On peut enchaîner text fixe et valeurs avec << dans un même std::cout.
 Où tu en es exactement
 
 Tu as un main() qui :

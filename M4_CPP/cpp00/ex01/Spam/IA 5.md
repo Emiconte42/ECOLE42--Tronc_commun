@@ -1,6 +1,6 @@
 # Rapport de reprise — C++ 42
 
-## Contexte
+## Context
 
 - **Étudiant** 
 - **Cadre** : École 42, cursus C++
@@ -26,7 +26,7 @@ Contact _contacts[8];
 - Commandes autorisées : `ADD`, `SEARCH`, `EXIT`.
 - Un contact possède cinq champs : prénom, nom, surnom, numéro de téléphone et secret le plus sombre.
 - Aucun champ enregistré ne doit être vide.
-- `SEARCH` doit afficher index, prénom, nom et surnom dans quatre colonnes de largeur 10, alignées à droite ; les textes trop longs sont tronqués et leur dernier caractère affichable devient `.`.
+- `SEARCH` doit afficher index, prénom, nom et surnom dans quatre colonnes de largeur 10, alignées à droite ; les texts trop longs sont tronqués et leur dernier caractère affichable devient `.`.
 - Organisation demandée : `Contact.hpp`, `Contact.cpp`, `PhoneBook.hpp`, `PhoneBook.cpp`, `main.cpp`, `Makefile`.
 
 ---

@@ -5,21 +5,22 @@
 int main()
 {
 	PhoneBook phoneBook;
-	std::string texte;
+	std::string text;
 	
-	while (texte != "EXIT")
+	while (text != "EXIT")
 	{
 		std::cout << "Entrez une commande (ADD, SEARCH, EXIT) : " << std::endl;
-		std::getline(std::cin, texte);
-		if (texte == "ADD")
+		std::getline(std::cin, text);
+		if (text == "ADD")
 		{
+			phoneBook.addContact();
 			// On appelera phoneBook.addContact(); pour ajouter un contact;
 		}
-		else if(texte == "SEARCH")
+		else if(text == "SEARCH")
 		{
 			// on appellera phoneBook.searchContact(); ici plus tard
 		}
-		// si texte == "EXIT", rien à faire de spécial : la boucle s'arrête toute seule
+		// si text == "EXIT", rien à faire de spécial : la boucle s'arrête toute seule
 		// toute autre saisie est ignorée automatiquement (aucun else nécessaire)
 	}
 	// Contact c1 ("aaA", "AAA", "AAA", "AAA", "AAA");  // on crée un objet de type Contact, nommé c comme un int x;
@@ -77,8 +78,8 @@ Un contact enregistré ne peut comporter de champs vides.
 • SEARCH : afficher un contact spécifique
 ◦ Afficher les contacts enregistrés sous forme de liste à 4 colonnes : index, prénom, nom et surnom.
 ◦ Chaque colonne doit avoir une largeur de 10 caractères. Elles sont séparées par un caractère « pipe » (|).
-Le texte doit être aligné à droite.
-Si le texte dépasse la largeur de la colonne, il doit être tronqué et le dernier caractère affichable remplacé par un point (.).
+Le text doit être aligné à droite.
+Si le text dépasse la largeur de la colonne, il doit être tronqué et le dernier caractère affichable remplacé par un point (.).
 ◦ Ensuite, demander à nouveau à l'utilisateur l'index de l'entrée à afficher.
 Si l'index est hors limites ou invalide, définir un comportement approprié. Sinon, afficher les informations du contact, à raison d'un champ par ligne.
 • EXIT
