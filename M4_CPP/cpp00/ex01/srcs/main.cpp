@@ -1,25 +1,25 @@
 #include <iostream>
-#include "Contact.hpp"
-#include "PhoneBook.hpp"
+#include "../includes/Contact.hpp"
+#include "../includes/PhoneBook.hpp"
 
 int main()
 {
 	PhoneBook phoneBook;
-	std::string text;
+	std::string input;
 	
-	while (text != "EXIT")
+	while (input != "EXIT")
 	{
-		std::cout << "Entrez une commande (ADD, SEARCH, EXIT) : " << std::endl;
-		std::getline(std::cin, text);
-		if (text == "ADD")
+		std::cout << "Entrez une commande (ADD, SEARCH or EXIT) : " << std::endl;
+		std::getline(std::cin, input);
+		if (input == "ADD")
 		{
-			phoneBook.addContact(); // On appelera phoneBook.addContact(); pour ajouter un contact;
+			phoneBook.addContact();
 		}
-		else if(text == "SEARCH")
+		else if(input == "SEARCH")
 		{
-			// on appellera phoneBook.searchContact(); ici plus tard
+			phoneBook.searchContact();
 		}
-		// si text == "EXIT", rien à faire de spécial : la boucle s'arrête toute seule
+		// si input == "EXIT", rien à faire de spécial : la boucle s'arrête toute seule
 		// toute autre saisie est ignorée automatiquement (aucun else nécessaire)
 	}
 	// Contact c1 ("aaA", "AAA", "AAA", "AAA", "AAA");  // on crée un objet de type Contact, nommé c comme un int x;

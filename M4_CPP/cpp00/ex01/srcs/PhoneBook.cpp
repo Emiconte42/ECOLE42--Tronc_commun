@@ -1,10 +1,8 @@
-#include "PhoneBook.hpp"
+#include "../includes/PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
 {
-	_count = 0;
-	// _contacts[0].._contacts[7] sont construits automatiquement
-	// via Contact::Contact()
+	_count = 0; // _contacts[0].._contacts[7] sont construits automatiquement via Contact::Contact()
 }
 
 void PhoneBook::addContact()
@@ -108,4 +106,16 @@ void PhoneBook::addContact()
 
 	_contacts[_count % 8] = Contact(inputFirstName, inputLastName, inputNickName, inputPhoneNumber, inputDarkestSecret);
 	_count++;
+}
+
+void PhoneBook::searchContact()
+{
+	int limit;
+
+	if (_count < 8)
+		limit = _count;
+	else
+		limit = 8;
+	for (int i = 0; i < limit; i++)
+		std::cout << i << " sur : " << limit << std::endl;
 }
