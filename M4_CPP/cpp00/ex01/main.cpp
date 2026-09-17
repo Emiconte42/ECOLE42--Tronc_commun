@@ -13,8 +13,7 @@ int main()
 		std::getline(std::cin, text);
 		if (text == "ADD")
 		{
-			phoneBook.addContact();
-			// On appelera phoneBook.addContact(); pour ajouter un contact;
+			phoneBook.addContact(); // On appelera phoneBook.addContact(); pour ajouter un contact;
 		}
 		else if(text == "SEARCH")
 		{
