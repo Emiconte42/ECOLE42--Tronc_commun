@@ -9,7 +9,7 @@ int main()
 	
 	while (input != "EXIT")
 	{
-		std::cout << "Entrez une commande (ADD, SEARCH or EXIT) : " << std::endl;
+		std::cout << "Available commands : ADD, SEARCH or EXIT : " << std::endl;
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{

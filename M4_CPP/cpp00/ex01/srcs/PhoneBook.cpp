@@ -110,12 +110,60 @@ void PhoneBook::addContact()
 
 void PhoneBook::searchContact()
 {
+	// Calcul de la limite
 	int limit;
 
 	if (_count < 8)
 		limit = _count;
 	else
 		limit = 8;
+		
+	if (limit == 0)
+	{
+		std::cout << "PhoneBook is empty" << std::endl;
+		return ;
+	}
+	// Affichage du header du tableau
+	std::cout << "|" << std::setw(10) << "Index" << "|";
+	std::cout << std::setw(10) << "First Name" << "|";
+	std::cout << std::setw(10) << "Last Name" << "|";
+	std::cout << std::setw(10) << "Nick Name" << "|" << std::endl;
+
+	// Affichage de la separation du tableau
+	std::cout << "|" << std::string(10, '*') << "|";
+	std::cout << std::string(10, '*') << "|";
+	std::cout << std::string(10, '*') << "|";
+	std::cout << std::string(10, '*') << "|" << std::endl;
+
+	// Affichage des contacts
 	for (int i = 0; i < limit; i++)
-		std::cout << i << " sur : " << limit << std::endl;
+	{
+		std::cout << "|" << std::setw(10) << i << "|";
+
+		std::string firstname = _contacts[i].getFirstName();
+		if (firstname.size() > 10)
+			firstname = firstname.substr(0, 9) + ".";
+		std::cout << std::setw(10) << firstname << "|";
+
+		std::string lastname = _contacts[i].getLastName();
+		if (lastname.size() > 10)
+			lastname = lastname.substr(0, 9) + ".";
+		std::cout << std::setw(10) << lastname << "|";
+
+		std::string nickname = _contacts[i].getNickName();
+		if (nickname.size() > 10)
+			nickname = nickname.substr(0, 9) + ".";
+		std::cout << std::setw(10) << nickname << "|" << std::endl;
+	}	
+
+	// Affichage d'un contact selon l'index
+	std::cout << "Enter an index :" << std::endl ;
+	std::string	index;
+	std::cin >> index;
+	if (index.empty() || index.size() > 1 || index[0] < '0' || index[0] > '8')
+	{
+		std::cout << "Invalid index, " ;
+		std::cout << "enter an index :" << std::endl ;
+		std::cin >> index;
+	}
 }
