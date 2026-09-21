@@ -1,6 +1,6 @@
 #include "../includes/Contact.hpp"
 
-// Constructeur par défaut
+// Constructeur par défaut, initialise un contact vide lorsque le carnet est cree.
 Contact::Contact()
 {
 	_firstname			= "";
@@ -9,7 +9,7 @@ Contact::Contact()
 	_phonenumber		= "";
 	_darkestsecret		= "";
 }
-// Constructeur avec 5 paramètres (vu avec Logan)
+// Constructeur avec 5 paramètres, initialise un contact avec les cinq informations fournies
 Contact::Contact(
 	const std::string& firstname,
 	const std::string& lastname,
@@ -24,7 +24,7 @@ Contact::Contact(
 	_darkestsecret(darkestsecret)
 {
 }
-
+// setters fonction publique qui permet de modifier un attribut prive
 void	Contact::setFirstName(const std::string& firstname) {
 	_firstname = firstname;
 }
@@ -41,7 +41,7 @@ void	Contact::setDarkestSecret(const std::string &darkestsecret) {
 	_darkestsecret = darkestsecret;
 }
 
-
+// getters fonction publique qui permetde lire uniquement un attribut prive
 std::string	Contact::getFirstName() const {
 	return _firstname;
 }

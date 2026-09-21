@@ -11,8 +11,9 @@ class PhoneBook
 	private:
 		Contact _contacts[8];
 		int _count;
+		bool askAddContact(const std::string &prompt, std::string &result);
 
-	public: // ici les methodes : ajouter, chercher ect... ADD, SEARCH ... voir sujet
+	public:
 		PhoneBook();
 		void addContact();
 		void searchContact();
