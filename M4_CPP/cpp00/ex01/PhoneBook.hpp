@@ -12,6 +12,9 @@ class PhoneBook
 		Contact _contacts[8];
 		int _count;
 		bool askAddContact(const std::string &prompt, std::string &result);
+		int getLimit() const;
+		void displayContactList(int limit) const;
+		void searchByIndex(int limit) const;
 
 	public:
 		PhoneBook();

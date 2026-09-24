@@ -1,7 +1,6 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
-#include <iostream>
 #include <string>
 
 class Contact {
@@ -15,15 +14,6 @@ class Contact {
 
 		// Constructeur par defaut
 		Contact();
-
-		//  Constructeur avec 5 paramètres
-		Contact(
-			const std::string& firstname,
-			const std::string& lastname,
-			const std::string& nickname,
-			const std::string& phonenumber,
-			const std::string& darkestsecret
-		);
 
 		// setters fonction publique qui permet de modifier un attribut prive
 		void	setFirstName(const std::string &firstname);

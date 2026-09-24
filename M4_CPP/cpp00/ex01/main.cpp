@@ -1,17 +1,20 @@
 #include <iostream>
-#include "../includes/Contact.hpp"
-#include "../includes/PhoneBook.hpp"
+#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 int main()
 {
 	PhoneBook phoneBook;
 	std::string input;
 	
-	while (input != "EXIT")
+	while (std::cin.good() && input != "EXIT")
 	{
-		std::cout << "Available commands : ADD, SEARCH or EXIT : " << std::endl;
+		std::cout << "Available commands : ADD, SEARCH or EXIT : ";
 		if (!std::getline(std::cin, input))
+		{
+			std::cout << std::endl;
 			break;
+		}
 		if (input == "ADD")
 		{
 			phoneBook.addContact();

@@ -1,13 +1,10 @@
-#include "../includes/PhoneBook.hpp"
+#include "PhoneBook.hpp"
 
-// Phonebook : initialise le carnet de contacts vide, count permet le calcul du nombre total de contacts
 PhoneBook::PhoneBook()
 {
-	_count = 0; 
+	_count = 0;
 }
 
-// Demande une saisie non vide et la stocke dans result. Renvoie false si la lecture échoue.
-// Utilise dans addContact()
 bool PhoneBook::askAddContact(const std::string &prompt, std::string &result)
 {
 	bool hasRealChar = false;
@@ -16,10 +13,13 @@ bool PhoneBook::askAddContact(const std::string &prompt, std::string &result)
 	{
 		std::cout << prompt;
 		if (!std::getline(std::cin, result))
+		{
+			std::cout << std::endl;
 			return false;
+		}
 		for (size_t i = 0; i < result.size(); i++)
 		{
-			if (result[i] != ' ')
+			if (result[i] != ' ' && result[i] != '\t')
 			{
 				hasRealChar = true;
 				break;
@@ -29,7 +29,6 @@ bool PhoneBook::askAddContact(const std::string &prompt, std::string &result)
 	return true;
 }
 
-// Demande les 5 champs d'un nouveau contact, puis l'ajoute au carnet (ecrase le plus ancien apres 8 contacts).
 void PhoneBook::addContact()
 {
 	std::string inputFirstName;
@@ -37,6 +36,7 @@ void PhoneBook::addContact()
 	std::string inputNickName;
 	std::string inputPhoneNumber;
 	std::string inputDarkestSecret;
+	Contact newContact;
 
 	if (!askAddContact("Enter your first name : ", inputFirstName))
 		return;
@@ -49,68 +49,69 @@ void PhoneBook::addContact()
 	if (!askAddContact("Enter your dark secret : ", inputDarkestSecret))
 		return;
 
-	_contacts[_count % 8] = Contact(inputFirstName, inputLastName, inputNickName, inputPhoneNumber, inputDarkestSecret);
+	newContact.setFirstName(inputFirstName);
+	newContact.setLastName(inputLastName);
+	newContact.setNickName(inputNickName);
+	newContact.setPhoneNumber(inputPhoneNumber);
+	newContact.setDarkestSecret(inputDarkestSecret);
+
+	_contacts[_count % 8] = newContact;
 	_count++;
 }
 
-
-void PhoneBook::searchContact()
+static std::string truncate(const std::string &text)
 {
-	// On calcul la limite, cela permets de determiner combien de contacts sont reellement dispo
-	int limit;
+	if (text.size() > 10)
+		return text.substr(0, 9) + ".";
+	return text;
+}
 
-	if (_count < 8)
-		limit = _count;
-	else
+int PhoneBook::getLimit() const
+{
+	int limit = _count;
+	if (limit > 8)
 		limit = 8;
-		
-	if (limit == 0)
-	{
-		std::cout << "PhoneBook is empty" << std::endl;
-		return ;
-	}
+	return limit;
+}
 
-	// Affichage du header du tableau
+void PhoneBook::displayContactList(int limit) const
+{
 	std::cout << "|" << std::setw(10) << "Index" << "|";
 	std::cout << std::setw(10) << "First Name" << "|";
 	std::cout << std::setw(10) << "Last Name" << "|";
 	std::cout << std::setw(10) << "Nick Name" << "|" << std::endl;
 
-	// Affichage de la separation du tableau
 	std::cout << "|" << std::string(10, '*') << "|";
 	std::cout << std::string(10, '*') << "|";
 	std::cout << std::string(10, '*') << "|";
 	std::cout << std::string(10, '*') << "|" << std::endl;
 
-	// Affichage des contacts dans le tableau avec la limite de 9 caracteres + '.'
 	for (int i = 0; i < limit; i++)
 	{
 		std::cout << "|" << std::setw(10) << i << "|";
 
-		std::string firstname = _contacts[i].getFirstName();
-		if (firstname.size() > 10)
-			firstname = firstname.substr(0, 9) + ".";
-		std::cout << std::setw(10) << firstname << "|";
-
-		std::string lastname = _contacts[i].getLastName();
-		if (lastname.size() > 10)
-			lastname = lastname.substr(0, 9) + ".";
-		std::cout << std::setw(10) << lastname << "|";
-
-		std::string nickname = _contacts[i].getNickName();
-		if (nickname.size() > 10)
-			nickname = nickname.substr(0, 9) + ".";
-		std::cout << std::setw(10) << nickname << "|" << std::endl;
+		std::cout << std::setw(10) << truncate(_contacts[i].getFirstName()) << "|";
+		std::cout << std::setw(10) << truncate(_contacts[i].getLastName()) << "|";
+		std::cout << std::setw(10) << truncate(_contacts[i].getNickName()) << "|" << std::endl;
 	}	
+}
 
-	// Affichage d'un contact selon l'index choisi
+void PhoneBook::searchByIndex(int limit) const
+{
 	int	index;
 
 	while (true)
 	{
 		std::cout << "Enter an index : ";
+
 		if (std::cin.eof())
 				return;
+		if (std::cin.peek() == '\n')
+		{
+			std::cin.get();
+			std::cout << "Empty index." << std::endl;
+			continue;
+		}
 		if (!(std::cin >> index))
 		{
 			if (std::cin.eof())
@@ -120,9 +121,9 @@ void PhoneBook::searchContact()
 			std::cout << "Invalid index." << std::endl;
 			continue ;
 		}
-
 		if (index < 0 || index >= limit)
 		{
+			std::cin.ignore(10000, '\n');
 			std::cout << "Invalid index." << std::endl;
 			continue ;
 		}
@@ -135,4 +136,16 @@ void PhoneBook::searchContact()
 	std::cout << "Nick Name : " << _contacts[index].getNickName() << std::endl;
 	std::cout << "Phone Number : " << _contacts[index].getPhoneNumber() << std::endl;
 	std::cout << "Darkest Secret : " << _contacts[index].getDarkestSecret() << std::endl;
+}
+
+void PhoneBook::searchContact()
+{
+	int limit = getLimit();
+	if (limit == 0)
+	{
+		std::cout << "PhoneBook is empty" << std::endl;
+		return ;
+	}
+	displayContactList(limit);
+	searchByIndex(limit);
 }

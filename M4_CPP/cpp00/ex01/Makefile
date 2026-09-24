@@ -14,7 +14,7 @@ CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = objs/
 
-SRCS = 	srcs/main.cpp srcs/Contact.cpp srcs/PhoneBook.cpp
+SRCS = 	main.cpp Contact.cpp PhoneBook.cpp
 
 # **************************************************************************** #
 #                                   COMPIL                                    #
