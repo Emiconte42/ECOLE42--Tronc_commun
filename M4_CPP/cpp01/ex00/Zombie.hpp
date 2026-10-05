@@ -14,8 +14,8 @@ class Zombie
 		~Zombie();
 
 		void announce(void);
-		std::string getName() const;
-		void setName(const std::string newName);
+		std::string getName() const; // getters permet de lire uniquement un attribut prive
+		void setName(const std::string& newName); // setters permet de modifier un attribut prive
 };
 
 Zombie* newZombie( std::string name );

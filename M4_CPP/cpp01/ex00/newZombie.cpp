@@ -2,9 +2,7 @@
 
 Zombie*	newZombie(std::string name)
 {
-	Zombie	*zombie;
-
-	zombie = new Zombie();
+	Zombie	*zombie = new Zombie();
 	if (!zombie)
 		return (NULL);
 	zombie->setName(name);
