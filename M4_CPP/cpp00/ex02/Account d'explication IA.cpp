@@ -2,12 +2,13 @@ But du projet
 
 Ex02 simule une petite banque. Tu ne dois pas écrire un programme interactif : il n’y a ni menu ni saisie utilisateur.
 
-Le fichier tests.cpp joue déjà le rôle du programme principal. Il crée huit comptes, réalise des dépôts et des retraits, puis affiche leur état. Ton fichier Account.cpp doit fournir les définitions manquantes de la classe déclarée dans Account.hpp. Le log donné est la sortie de référence à reproduire, à l’exception de la date et de l’heure.
+Le fichier tests.cpp joue déjà le rôle du programme principal. Il crée huit comptes, réalise des dépôts et des retraits, puis affiche leur état. 
+Ton fichier Account.cpp doit fournir les définitions manquantes de la classe déclarée dans Account.hpp. 
+Le log donné est la sortie de référence à reproduire, à l’exception de la date et de l’heure.
 Les fichiers et leurs rôles
 Fichier	Rôle
 Account.hpp	Le contrat : attributs et méthodes que la classe Account doit posséder
-Account.cpp	Ce que tu dois recréer : le fonctionnement réel de chaque méthode
-tests.cpp	Le main fourni : il utilise la classe et déclenche les opérations
+Account.cpp	Ce que tu dois recréer : le fonctionnement réel de chaque méthode tests.cpp	Le main fourni : il utilise la classe et déclenche les opérations
 19920104_091532.log	La sortie attendue : il permet de déduire le comportement précis
 Makefile	Compile les fichiers pour produire l’exécutable
 
@@ -28,7 +29,8 @@ Le programme fourni effectue cette séquence :
 
     Deux retraits sont refusés, car 321 > 47 pour le compte 0 et 275 > 23 pour le compte 5.
 
-    Il affiche une dernière fois les statistiques et les comptes, puis les destructeurs ferment les comptes. Le log confirme ces étapes et les valeurs après chaque opération.
+    Il affiche une dernière fois les statistiques et les comptes, puis les destructeurs ferment les comptes.
+	Le log confirme ces étapes et les valeurs après chaque opération.
 
 Ce que tu fais concrètement
 
@@ -80,25 +82,14 @@ Puis examiner ce fichier :
 bash
 cat output.log
 
-Les timestamps ne seront pas identiques à ceux du log de 1992 : compare donc surtout le reste de chaque ligne (index, amount, deposits, withdrawals, etc.). Le sujet indique explicitement que les timestamps différeront.
+Les timestamps ne seront pas identiques à ceux du log de 1992 : 
+	compare donc surtout le reste de chaque ligne (index, amount, deposits, withdrawals, etc.).
+	Le sujet indique explicitement que les timestamps différeront.
 
-📝 À noter — La commande > redirige la sortie affichée dans le terminal vers un fichier. Ainsi, ./account > output.log garde toute la sortie dans output.log au lieu de l’afficher à l’écran.
-
-
-
-
+📝 À noter — La commande > redirige la sortie affichée dans le terminal vers un fichier. 
+Ainsi, ./account > output.log garde toute la sortie dans output.log au lieu de l’afficher à l’écran.
 
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-
-
-
-
-
-
-
-
-
-
 
 
 
