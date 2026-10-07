@@ -14,7 +14,7 @@ CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = objs/
 
-SRCS = main.cpp SRCS/HumanA.cpp SRCS/HumanB.cpp SRCS/Weapon.cpp
+SRCS = main.cpp srcs/HumanA.cpp srcs/HumanB.cpp srcs/Weapon.cpp
 
 # **************************************************************************** #
 #                                   COMPIL                                    #
