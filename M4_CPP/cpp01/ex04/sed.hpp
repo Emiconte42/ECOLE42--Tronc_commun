@@ -11,16 +11,10 @@ enum validate
 	ERROR = 1,
 };
 
-// class sed
-// {
-// 	private:
-// 		std::string&	_filname;
-// 		std::string&	_s1;
-// 		std::string*	_s2;
-
-// 	public:
-
-
-// };
+int	checkInputFile(std::ifstream &file);
+int	checkSearchWord(const std::string &s1);
+int	checkOutputFile(std::ofstream &file);
+std::string	readFile(std::ifstream &file);
+std::string replaceAll(const std::string &content, std::string s1, std::string s2);
 
 #endif
