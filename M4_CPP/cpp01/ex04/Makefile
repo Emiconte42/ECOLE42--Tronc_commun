@@ -36,6 +36,7 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
+	rm -f *.replace
 
 re : fclean all
 

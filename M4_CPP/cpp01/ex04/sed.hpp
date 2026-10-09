@@ -3,15 +3,24 @@
 
 #include <iostream>
 #include <string>
+#include <fstream> // outil qui sert à ouvrir et lire un fichier
 
-class sed
+enum validate
 {
-	private:
-		std::string&	_filname;
-		std::string&	_s1;
-		std::string*	_s2;
+	SUCCESS = 0,
+	ERROR = 1,
+};
 
-	public:
+// class sed
+// {
+// 	private:
+// 		std::string&	_filname;
+// 		std::string&	_s1;
+// 		std::string*	_s2;
+
+// 	public:
 
 
-}
+// };
+
+#endif
