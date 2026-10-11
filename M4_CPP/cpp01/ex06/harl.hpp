@@ -7,10 +7,10 @@
 class Harl
 {
 	private:
-		void _debug( void );
-		void _info( void );
-		void _warning( void );
-		void _error( void );
+		void debug( void );
+		void info( void );
+		void warning( void );
+		void error( void );
 	
 	public:
 	Harl();

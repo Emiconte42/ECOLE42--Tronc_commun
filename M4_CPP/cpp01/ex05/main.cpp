@@ -1,11 +1,12 @@
-#include "harl.hpp"
+#include "Harl.hpp"
 
 int main(void)
 {
 	Harl	harl;
-	harl.debug("DEBUG");
-	harl.info("INFO");
-	harl.warning("WARNING");
-	harl.error("ERROR");
+	harl.complain("DEBUG");
+	harl.complain("INFO");
+	harl.complain("WARNING");
+	harl.complain("ERROR");
+	harl.complain("BLABLA");
 	return (0);
 }

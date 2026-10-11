@@ -2,7 +2,7 @@
 #                                   CONFIG                                     #
 # **************************************************************************** #
 
-NAME		= harl_2_0
+NAME		= Harl_2_0
 
 CC			= c++
 
@@ -14,7 +14,7 @@ CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = objs/
 
-SRCS = main.cpp harl.cpp
+SRCS = main.cpp Harl.cpp
 
 # **************************************************************************** #
 #                                   COMPIL                                    #
