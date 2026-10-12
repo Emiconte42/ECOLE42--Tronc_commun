@@ -12,8 +12,11 @@
 #include	"mlx_int.h"
 
 
-int             mlx_get_color_value(t_xvar *xvar,int color)
+int             mlx_get_color_value(void *mlx_ptr,int color)
 {
+  t_xvar        *xvar;
+
+  xvar = mlx_ptr;
   return(mlx_int_get_good_color(xvar,color));
 }
 

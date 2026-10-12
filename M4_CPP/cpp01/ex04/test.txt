@@ -6,7 +6,7 @@ telephone
 mama
 salut
 mama
-
+\0
     
  
 

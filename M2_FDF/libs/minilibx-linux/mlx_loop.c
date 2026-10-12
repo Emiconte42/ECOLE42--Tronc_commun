@@ -11,7 +11,7 @@
 
 #include	"mlx_int.h"
 
-extern int	(*(mlx_int_param_event[]))();
+extern int	(*mlx_int_param_event[])(t_xvar *, XEvent *, t_win_list *);
 
 static int	win_count(t_xvar *xvar)
 {

@@ -32,10 +32,10 @@ int	checkOutputFile(std::ofstream &file)
 
 std::string	readFile(std::ifstream &file)
 {
-	std::string	content; // permet d'etre rempli via get() pour lire un fichier
-	char c; // on avance char par char
-	while (file.get(c)) // tant qu'il y a du texte dans le fichier on lit char par char
-		content += c; // et on stock le resultat dans content
+	std::string	content; // permet d'etre rempli via getline() pour lire un fichier
+	std::string line; // on avance ligne par ligne
+	while (getline(file, line)) // tant qu'il y a du texte dans le fichier
+		content += line + '\n';
 	return (content);
 }
 

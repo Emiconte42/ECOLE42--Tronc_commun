@@ -10,7 +10,6 @@ int	main(void)
 	while (i < nbZombie)
 		hordeZombie[i++].announce();
 
-	// sleep(2);
 	delete[] hordeZombie;
 	return (0);
 }
