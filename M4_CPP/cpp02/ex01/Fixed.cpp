@@ -1,46 +1,32 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+// Codes de l'exo00
+Fixed::Fixed() : _rawBits(0) 
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->_rawBits = 0;
-	return;
-}
-Fixed::Fixed(int const n)
-{
-	std::cout << "Int constructor called" << std::endl;
-	_rawBits = n << _fractionalBits;
-}
-
-Fixed::Fixed(float const n)
-{
-	std::cout << "Float constructor called" << std::endl;
-	_rawBits = roundf( n * (1 << _fractionalBits));
 }
 
 Fixed::Fixed (Fixed const & cpy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->_rawBits = cpy.getRawBits();
+	*this = cpy;
 }
 
-Fixed & Fixed::operator=(Fixed const &other)
+Fixed &Fixed::operator=(Fixed const &other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_rawBits = other.getRawBits();
+	if (this != &other)
+		this->_rawBits = other.getRawBits();
 	return (*this);
 }
 
-std::ostream & operator<<(std::ostream & out, Fixed const & other)
+Fixed::~Fixed()
 {
-	out << other.toFloat();
-	return (out);
+	std::cout << "Destructor called" << std::endl;
 }
-
 
 int Fixed::getRawBits( void ) const
 {
-	// std::cout << "getRawBits member function called" << std::endl;
 	return (this->_rawBits);
 }
 
@@ -49,20 +35,32 @@ void Fixed::setRawBits( int const raw )
 	this->_rawBits = raw;
 	return;
 }
+// Codes de l'exo01
+
+Fixed::Fixed(int const n)
+{
+	std::cout << "Int constructor called" << std::endl;
+	this->_rawBits = n << _fractionalBits; // convertit n INT en virgule fixe en decalant de 8 bits vers la gauche
+}
+// ----- Convertir 
+Fixed::Fixed(float const n)
+{
+	std::cout << "Float constructor called" << std::endl;
+	this->_rawBits = roundf ( n * ( 1 << _fractionalBits)); // convertir n FLOAT en multipliant par 256 et en arrondissant
+}
 
 float Fixed::toFloat( void ) const
 {
-	int a;
-	a = _rawBits / _fractionalBits;
-	return(a);
+	return ((float)this->_rawBits / (1 << _fractionalBits)); // 1 << _fractionnalBits = 256
 }
 
 int Fixed::toInt( void ) const
 {
-	return (_rawBits);
+	return (this->_rawBits >> _fractionalBits); // equivaut a resultat / 256
 }
 
-Fixed::~Fixed()
+std::ostream & operator<<(std::ostream &o, Fixed const & other)
 {
-	std::cout << "Destructor called" << std::endl;
+	o << other.toFloat(); // met le resultat dans le flux
+	return (o); // retourne le flux
 }

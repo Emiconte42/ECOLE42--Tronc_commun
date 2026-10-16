@@ -278,3 +278,40 @@ Ajoutez les vérifications `d_i != 0`, et pas seulement la cohérence des signes
   un décalage décimal implicite) et représente un outil puissant (géométrie
   déterministe, égalités exactes).
 Tout à partir du Mod 03 **part du principe** que vous avez assimilé l'OCF et l'operator overloading. Si vous n'êtes pas encore tout à fait à l'aise avec ces notions, repassez par ex00/01 avant de commencer le Mod 03.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
