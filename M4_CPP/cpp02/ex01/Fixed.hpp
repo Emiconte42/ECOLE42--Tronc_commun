@@ -18,18 +18,18 @@ class Fixed
 		~Fixed();
 		
 		// Constructeur de l'ex01
-		Fixed(int const n);
-		Fixed(float const n);
+		Fixed(int const n); // construit _rawBits en n * 256
+		Fixed(float const n); // construit _rawBits en n * 256 + arrondi
 
 		//Getters et Setters de l'ex00
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
 
 		// Nvelles fonctions de l'ex01
-		float toFloat( void ) const;
-		int toInt( void ) const;
+		float toFloat( void ) const; // retourne le nombre avec ses decimales en / 256
+		int toInt( void ) const; // retourne seulement la partie entiere en / 256
 	};
 	
 	// surcharge de l'operateur a mettre hors de la classe
-	std::ostream & operator<<(std::ostream &o, Fixed const & other); // operateur d'assignation
+	std::ostream & operator<<(std::ostream &o, Fixed const & other);
 #endif

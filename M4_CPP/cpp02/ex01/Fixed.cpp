@@ -51,7 +51,7 @@ Fixed::Fixed(float const n)
 
 float Fixed::toFloat( void ) const
 {
-	return ((float)this->_rawBits / (1 << _fractionalBits)); // 1 << _fractionnalBits = 256
+	return ((float)this->_rawBits / (1 << _fractionalBits)); // 1 << _fractionalBits = 256
 }
 
 int Fixed::toInt( void ) const

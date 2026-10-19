@@ -1,7 +1,6 @@
 #include "../includes/Fixed.hpp"
 #include "../includes/Point.hpp"
 
-
 float Point::sign (Point p, Point a, Point b)
 {
 	Fixed	fixed;

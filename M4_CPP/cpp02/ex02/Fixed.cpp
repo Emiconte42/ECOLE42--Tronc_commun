@@ -126,7 +126,7 @@ Fixed Fixed::operator--(int) {
 	return (tmp);
 }
 
-// INT MIN et INT MAX
+// MIN et MAX
 Fixed &Fixed::min(Fixed &a, Fixed &b) {
 	if (a < b)
 		return a;

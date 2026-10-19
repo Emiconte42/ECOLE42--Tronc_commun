@@ -32,21 +32,21 @@ class Fixed
 		bool	operator ==(Fixed const &other) const;
 		bool	operator !=(Fixed const &other) const;
 
-	// arithmetique
+		// arithmetique
 		Fixed operator+(Fixed const &other) const;
 		Fixed operator-(Fixed const &other) const;
 		Fixed operator*(Fixed const &other) const;
 		Fixed operator/(Fixed const &other) const;
 		
-	// incrementation / decrementation
+		// incrementation / decrementation
 		Fixed &operator++(void);
 		Fixed operator++(int );
 		Fixed &operator--(void);
 		Fixed operator--(int);
 
-	// INT MIN et INT MAX
-		static Fixed &min(Fixed &a, Fixed &b);
-		static const Fixed &min(Fixed const &a, Fixed const &b);
+		// MIN et MAX - static : la fonction appartient a la classe, pas a un objet. on l'appelle sans objet
+		static Fixed &min(Fixed &a, Fixed &b); // a et b sont modifiables
+		static const Fixed &min(Fixed const &a, Fixed const &b); // a et b ne sont pas modifiables
 		static Fixed &max(Fixed &a, Fixed &b);
 		static const Fixed &max(Fixed const &a, Fixed const &b);
 	};
