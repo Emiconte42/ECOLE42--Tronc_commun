@@ -45,7 +45,7 @@ unsigned int ClapTrap::getAttackDamage() const
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << GREEN << "Copy assignment operator called" << endofline;
 	if (this != &other)
 	{
 		this->_name = other.getName();
@@ -122,7 +122,7 @@ void ClapTrap::print_stats() const
 	std::cout << DIM << "----- Statistiques de " << _name << " -----" << std::endl;
 	std::cout << "Hit Point : \t" << _hitPoints << std::endl;
 	std::cout << "Energy Point : \t" << _energyPoint << std::endl;
-	std::cout << "Attack Damage : " << _attackDamage << std::endl << endofline << RESET;
+	std::cout << "Attack Damage : " << _attackDamage << std::endl << endofline;
 }
 
 void ClapTrap::print_rules() const
@@ -131,5 +131,4 @@ void ClapTrap::print_rules() const
 	std::cout << "attack : -1 energy point" << std::endl;
 	std::cout << "takeDamage : '- X' hit point" << std::endl;
 	std::cout << "beRepaired : '+ X' hit point, -1 energy point " << endofline;
-
 }
