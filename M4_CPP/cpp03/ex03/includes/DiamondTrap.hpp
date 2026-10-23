@@ -2,34 +2,24 @@
 #define DIAMONDTRAP_HPP
 
 #include <iostream>
-#include "FlagTrap.hpp"
+#include <string>
+#include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-class DiamondTrap : public FlagTrap, public ScavTrap
+class DiamondTrap : public FragTrap, public ScavTrap // DiamondTrap herite de FT ET de ST + grace au "virtual" dans FT & ST, il n'y a qu'UN SEUL ClapTrap
 {
 	private :
-		std::string		_name;
-
+		std::string		_name;	// meme nom que ClapTrap::_name 
+								// il "masque" celui de ClapTrap::_name = nom + "_clap_name"
 	public :
-		DiamondTrap(); // constructeur par defaut
-		DiamondTrap(std::string const name); // constructeur par defaut avec name
-		DiamondTrap (DiamondTrap const & cpy); // constructeur par copie
-		~DiamondTrap(); // destructeur
-		DiamondTrap & operator=(DiamondTrap const &other); // operateur d'assignation
+		DiamondTrap();
+		DiamondTrap(std::string const name);
+		DiamondTrap (DiamondTrap const & cpy);
+		DiamondTrap & operator=(DiamondTrap const &other);
+		~DiamondTrap();
 
-		// std::string getName() const;
-		// unsigned int getHitPoint() const;
-		// unsigned int getEnergyPoint() const;
-		// unsigned int getAttackDamage() const;
-
-		// void attack(const std::string& target);
-		// void takeDamage(unsigned int amount);
-		// void beRepaired(unsigned int amount);
-		void whoAmI();
-
-		// void print_stats() const;
+		void whoAmI();			// affiche _name et ClapTrap::_name
+		using ScavTrap::attack;	// indique a DiamondTrap d'utiliser ScavTrap
 	};
-	
-	void print_rules();
 
 #endif

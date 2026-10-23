@@ -4,24 +4,19 @@
 
 int main()
 {
-	ClapTrap	robot1("Bob");
-	ScavTrap	robot2("Lola");
-
 	print_rules();
+	{
+		std::cout << "===== ScavTrap =====" << std::endl;
 
-	robot1.print_stats();
-	robot1.attack("Lola");
-	robot1.takeDamage(30);
-	robot1.beRepaired(10);
-	robot1.print_stats();
+		ScavTrap	scav("Lola");
 
-	robot2.print_stats();
-	robot2.attack("Bob");
-	robot2.takeDamage(30);
-	robot2.beRepaired(10);
-	robot2.guardGate();
-	robot2.guardGate();
-	robot2.print_stats();
-	
+		scav.print_stats();
+		scav.attack("Bob");
+		scav.guardGate();
+		scav.guardGate();
+		scav.beRepaired(10);
+		scav.takeDamage(2);
+		scav.print_stats();
+	}
 	return (0);
 }

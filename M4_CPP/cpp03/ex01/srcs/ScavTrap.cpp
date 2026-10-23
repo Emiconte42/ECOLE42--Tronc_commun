@@ -38,8 +38,8 @@ bool ScavTrap::getGuardGate() const
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &other)
 {
-	std::cout << GREEN << "Copy assignment operator called" << endofline;
-	if (this != &other)
+	std::cout << "ScavTrap : Copy assignment operator called" << endofline;
+	if (this != &other) // protection : evite de se copier sur soi-meme (a = a)
 	{
 		this->_name = other.getName();
 		this->_hitPoints = other.getHitPoint();
@@ -64,7 +64,7 @@ void ScavTrap::attack(const std::string& target)
 	}
 	else
 		_energyPoint -= 1;
-	std::cout << BOLD << "ScavTrap " << _name << " attack " << target << ", causing " << _attackDamage << " points of damage!" << endofline;
+	std::cout << BOLD << "ScavTrap : " << _name << " attack " << target << ", causing " << _attackDamage << " points of damage!" << endofline;
 	return;
 }
 

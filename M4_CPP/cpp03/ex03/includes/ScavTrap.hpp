@@ -2,25 +2,20 @@
 #define SCAVTRAP_HPP
 
 #include <iostream>
+#include <string>
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : public virtual ClapTrap // ScavTrap herite de ClapTrap + virtual = pour que DiamondTrap n'ait qu'UN SEUL ClapTrap
 {
-	private :
-		bool	_guardGate;
-
 	public :
-		ScavTrap(); // constructeur par defaut
-		ScavTrap(std::string const name); // constructeur par defaut avec name
-		ScavTrap (ScavTrap const & cpy); // constructeur par copie
-		~ScavTrap(); // destructeur
+		ScavTrap();
+		ScavTrap(std::string const name);
+		ScavTrap (ScavTrap const & cpy);
 		ScavTrap & operator=(ScavTrap const &other);
+		~ScavTrap();
 
-		bool getGuardGate() const;
 		void attack(const std::string& target);
 		void guardGate();
-
-		void print_stats() const;
 };
 
 #endif

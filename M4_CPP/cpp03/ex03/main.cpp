@@ -1,37 +1,29 @@
-#include "includes/ClapTrap.hpp"
-#include "includes/ScavTrap.hpp"
-#include "includes/FlagTrap.hpp"
 #include "includes/DiamondTrap.hpp"
 #include "utils/utils.hpp"
 
 int main()
 {
-	ClapTrap	robot1("Bob");
-	ScavTrap	robot2("Lola");
-	FlagTrap	robot3("Eli");
+	std::cout << "===== Part 1 =====" << std::endl;
+	{
+		DiamondTrap robot("Bob");
 
-	print_rules();
+		robot.whoAmI();			// DiamondTrap
+		robot.print_stats();	// ClapTrap
+		robot.attack("Cible");	// attack() de ScavTrap
+		robot.guardGate();		// ScavTrap
+		robot.highFivesGuys();	// FragTrap
+	}
 
-	robot1.print_stats();
-	robot1.attack("Lola");
-	robot1.takeDamage(30);
-	robot1.beRepaired(10);
-	robot1.print_stats();
+	std::cout << "\n===== Part 2 =====" << std::endl;
+	{
+		DiamondTrap robot("Bob");
+		DiamondTrap robot2(robot);
 
-	robot2.print_stats();
-	robot2.attack("Bob");
-	robot2.takeDamage(30);
-	robot2.beRepaired(10);
-	robot2.guardGate();
-	robot2.guardGate();
-	robot2.print_stats();
+		robot2.whoAmI();
+		robot2.takeDamage(5);
+		robot2.beRepaired(10);
+		robot2.print_stats();
+	}
 
-	robot3.print_stats();
-	robot3.attack("Bob & Lola");
-	robot3.takeDamage(30);
-	robot3.beRepaired(10);
-	robot3.highFivesGuys();
-	robot3.print_stats();
-	
 	return (0);
 }

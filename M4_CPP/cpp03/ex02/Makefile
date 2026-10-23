@@ -2,7 +2,7 @@
 #                                   CONFIG                                     #
 # **************************************************************************** #
 
-NAME		= flagtrap
+NAME		= fragtrap
 
 CC			= c++
 
@@ -14,7 +14,7 @@ CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 OBJ_DIR = objs/
 
-SRCS = main.cpp srcs/ClapTrap.cpp srcs/ScavTrap.cpp srcs/FlagTrap.cpp utils/utils.cpp
+SRCS = main.cpp srcs/ClapTrap.cpp srcs/ScavTrap.cpp srcs/FragTrap.cpp utils/utils.cpp
 
 # **************************************************************************** #
 #                                   COMPIL                                    #
