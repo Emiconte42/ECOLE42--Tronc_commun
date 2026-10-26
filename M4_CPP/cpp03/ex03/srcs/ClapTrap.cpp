@@ -1,9 +1,6 @@
 #include "../includes/ClapTrap.hpp"
 #include "../utils/utils.hpp"
 
-// Constructeur par defaut : un ClapTrap sans nom donne
-// Liste d'initialisation : les attributs recoivent leur valeur des la creation
-// Valeurs du sujet : 10 hit points, 10 energy points, 0 attack damage
 ClapTrap::ClapTrap() : _name("Default"), _hitPoints(10), _energyPoint(10), _attackDamage(0)
 {
 	std::cout << GREEN << "ClapTrap : Default constructor called" << endofline;
@@ -14,8 +11,6 @@ ClapTrap::ClapTrap(std::string const name) : _name(name), _hitPoints(10), _energ
 	std::cout << GREEN << "ClapTrap : Parametric constructor called" << endofline;
 }
 
-// Constructeur de copie : cree un NOUVEAU ClapTrap a partir d'un ClapTrap existant (cpy)
-// "const &" : on lit l'original sans le modifier, et sans en faire une copie de plus
 ClapTrap::ClapTrap(ClapTrap const & cpy)
 {
 	std::cout << GREEN << "ClapTrap : Copy constructor called" << endofline;
@@ -27,8 +22,6 @@ ClapTrap::~ClapTrap()
 	std::cout << RED << "ClapTrap : Destructor called" << endofline;
 }
 
-// Operateur d'affectation : REMPLACE le contenu d'un ClapTrap qui existe deja (a = b)
-// Retourne une reference (&) sur l'objet : permet les affectations en chaine (a = b = c)
 ClapTrap &ClapTrap::operator=(ClapTrap const &other)
 {
 	std::cout << "ClapTrap : Copy assignment operator called" << endofline;
@@ -42,8 +35,6 @@ ClapTrap &ClapTrap::operator=(ClapTrap const &other)
 	return (*this);
 }
 
-// attack : ClapTrap attaque une cible
-// Cout : 1 energy point. Impossible d'attaquer sans hit points ou sans energy points
 void ClapTrap::attack(const std::string& target)
 {
 	if (_hitPoints < 1)
@@ -62,10 +53,6 @@ void ClapTrap::attack(const std::string& target)
 	return;
 }
 
-// takeDamage : ClapTrap subit des degats (amount hit points en moins)
-// "unsigned int" ne peut pas etre negatif : si on retirait plus que ce qu'il reste,
-// le resultat deviendrait un tres grand nombre (4294967295...) au lieu de 0
-// Donc on teste AVANT de soustraire
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (amount >= _hitPoints)
@@ -79,8 +66,6 @@ void ClapTrap::takeDamage(unsigned int amount)
 	std::cout << BOLD << "ClapTrap : " << _name << " takes " << amount << " points of damage !" << endofline;
 }
 
-// beRepaired : ClapTrap se soigne (+ amount hit points)
-// Cout : 1 energy point. Impossible sans energy points ou sans hit points
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_energyPoint == 0)
@@ -110,9 +95,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 	return;
 }
 
-// AJOUT PERSO : affiche les stats du robot
-// "const" : la fonction lit les attributs sans jamais les modifier
-// Les classes filles (ScavTrap, FragTrap, DiamondTrap) l'heritent : on a pas besoin de la reecrire
 void ClapTrap::print_stats() const
 {
 	std::cout << std::endl;
@@ -122,7 +104,6 @@ void ClapTrap::print_stats() const
 	std::cout << "Attack Damage : " << _attackDamage << std::endl << endofline << RESET;
 }
 
-// AJOUT PERSO : affiche les regles du jeu au debut du main
 void print_rules()
 {
 	std::cout << BLUE << "/////////////// Rules of the game ///////////////" << std::endl;
