@@ -2,6 +2,7 @@
 #define WRONGANIMAL_HPP
 
 #include <iostream>
+#include <string>
 
 class WrongAnimal
 {
@@ -9,12 +10,13 @@ class WrongAnimal
 		std::string type;
 	public :
 		WrongAnimal();
-		WrongAnimal(std::string const type);
-		WrongAnimal(std::string const &cpy);
+		WrongAnimal(std::string const &animalType);
+		WrongAnimal(WrongAnimal const &cpy);
 		WrongAnimal & operator=(WrongAnimal const &other);
-		~WrongAnimal();
+		virtual ~WrongAnimal();
 
-		void makeSound();
+		std::string const &getType() const;
+		void makeSound(void) const;
 };
 
 #endif

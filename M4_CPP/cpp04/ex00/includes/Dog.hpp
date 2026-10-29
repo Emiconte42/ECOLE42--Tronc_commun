@@ -8,13 +8,11 @@ class Dog : public Animal
 {
 	public :
 		Dog();
-		Dog(std::string const type);
-		Dog(std::string const &cpy);
+		Dog(Dog const &cpy);
 		Dog & operator=(Dog const &other);
 		~Dog();
 
-		std::string getType() const;
-		void makeSound();
+		virtual void makeSound(void) const;
 };
 
 #endif

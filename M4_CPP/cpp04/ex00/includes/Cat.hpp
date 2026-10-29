@@ -8,12 +8,11 @@ class Cat : public Animal
 {
 	public :
 		Cat();
-		Cat(std::string const type);
-		Cat(std::string const &cpy);
+		Cat(Cat const &cpy);
 		Cat & operator=(Cat const &other);
 		~Cat();
 
-		void makeSound();
+		virtual void makeSound(void) const;
 };
 
 #endif

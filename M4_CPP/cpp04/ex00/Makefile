@@ -8,16 +8,31 @@ CC			= c++
 
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
+INCLUDES	= -I includes -I utils
+
 # **************************************************************************** #
 #                                   SOURCES                                    #
 # **************************************************************************** #
 
 OBJ_DIR = objs/
 
-SRCS = main.cpp srcs/Polymorphism.cpp utils/utils.cpp
+SRCS =		main.cpp \
+			srcs/Animal.cpp \
+			srcs/Cat.cpp \
+			srcs/Dog.cpp \
+			srcs/WrongAnimal.cpp \
+			srcs/WrongCat.cpp \
+			utils/utils.cpp
+
+HEADERS =	includes/Animal.hpp \
+			includes/Cat.hpp \
+			includes/Dog.hpp \
+			includes/WrongAnimal.hpp \
+			includes/WrongCat.hpp \
+			utils/utils.hpp
 
 # **************************************************************************** #
-#                                   COMPIL                                    #
+#                                   COMPIL                                     #
 # **************************************************************************** #
 
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)%.o)
@@ -27,9 +42,9 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJ_DIR)%.o : %.cpp
+$(OBJ_DIR)%.o : %.cpp $(HEADERS)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean :
 	rm -rf $(OBJ_DIR)

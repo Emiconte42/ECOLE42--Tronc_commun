@@ -4,17 +4,15 @@
 #include <iostream>
 #include "WrongAnimal.hpp"
 
-class WrongCat : public virtual WrongAnimal
+class WrongCat : public WrongAnimal
 {
-
 	public :
 		WrongCat();
-		WrongCat(std::string const type);
-		WrongCat(std::string const &cpy);
+		WrongCat(WrongCat const &cpy);
 		WrongCat & operator=(WrongCat const &other);
 		~WrongCat();
 
-		void makeSound();
+		void makeSound(void) const;
 };
 
 #endif
