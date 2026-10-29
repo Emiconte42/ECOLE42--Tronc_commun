@@ -18,9 +18,19 @@ OBJ_DIR = objs/
 
 SRCS =		main.cpp \
 			srcs/AMateria.cpp \
+			srcs/Character.cpp \
+			srcs/Cure.cpp \
+			srcs/Ice.cpp \
+			srcs/MateriaSource.cpp \
 			utils/utils.cpp
 
 HEADERS =	includes/AMateria.hpp \
+			includes/Character.hpp \
+			includes/Cure.hpp \
+			includes/Ice.hpp \
+			includes/ICharacter.hpp \
+			includes/IMateriaSource.hpp \
+			includes/MateriaSource.hpp \
 			utils/utils.hpp
 
 # **************************************************************************** #
