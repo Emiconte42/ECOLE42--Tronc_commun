@@ -1,9 +1,17 @@
 #ifndef IMATERIASOURCE_HPP
 #define IMATERIASOURCE_HPP
 
-#include <iostream>
-#include <string>
 #include "AMateria.hpp"
+#include <string>
+
+/*
+	Le contrat d'un livre de recettes :
+	il dit qu'on peut apprendre un modele et fabriquer une Materia.
+	INTERFACE :
+		- Des fonctions virtuelles pures (=0)
+		- Un destructeur virtuel
+		- Peut heriter d'autres interfaces uniquement
+*/
 
 class IMateriaSource
 {
